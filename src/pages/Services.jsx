@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PickupModal from '../components/PickupModal'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
 import { contactInfo } from '../config/contact'
 
 export default function Services() {
@@ -22,7 +25,33 @@ export default function Services() {
   }, [location])
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="Our Services - Laundry, Dry Cleaning, Shoes | Laundryman Ranchi"
+        description="Comprehensive laundry and dry cleaning services in Ranchi. Laundry, dry cleaning, shoe cleaning, sofa cleaning, and B2B services. Free home pickup & delivery."
+        url="/services"
+        keywords="laundry service Ranchi, dry cleaning Ranchi, shoe cleaning Ranchi, sofa cleaning Ranchi, wash and fold Ranchi"
+      />
+      <SchemaMarkup
+        type="service"
+        pageData={{
+          service: {
+            name: 'Laundry & Dry Cleaning Services',
+            description: 'Comprehensive laundry and dry cleaning services including wash & fold, dry cleaning, shoe cleaning, and sofa cleaning'
+          },
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -349,6 +378,7 @@ export default function Services() {
         onClose={() => setIsPickupModalOpen(false)} 
       />
     </div>
+    </>
   )
 }
 

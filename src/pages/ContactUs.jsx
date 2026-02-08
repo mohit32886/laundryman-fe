@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { contactInfo } from '../config/contact'
 import CallbackModal from '../components/CallbackModal'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
 import { submitContactForm } from '../services/googleSheetsService'
 
 export default function ContactUs() {
@@ -59,7 +62,29 @@ export default function ContactUs() {
   }
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="Contact Us - Laundryman Ranchi | Call, WhatsApp, or Visit"
+        description="Get in touch with Laundryman in Ranchi. Call +91-9006463666, WhatsApp, or visit our store. Free consultation and pickup scheduling available."
+        url="/contact-us"
+        keywords="contact Laundryman Ranchi, laundry service contact, dry cleaning contact Ranchi, Laundryman phone number"
+      />
+      <SchemaMarkup
+        type="localBusiness"
+        pageData={{
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'Contact Us', path: '/contact-us' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact Us', path: '/contact-us' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -367,6 +392,7 @@ export default function ContactUs() {
         onClose={() => setIsCallbackModalOpen(false)} 
       />
     </div>
+    </>
   )
 }
 

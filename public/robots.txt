@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+
+# Allow all public pages
+Allow: /
+Allow: /services
+Allow: /pricing
+Allow: /store-locator
+Allow: /locations/
+Allow: /blogs
+Allow: /contact-us
+Allow: /about-us
+
+# Sitemap location
+Sitemap: https://laundryman.pro/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

@@ -1,0 +1,99 @@
+/**
+ * Touch Optimization CSS
+ * Ensures all interactive elements meet mobile accessibility standards
+ * Minimum touch target: 48x48px (WCAG 2.1 Level AAA)
+ */
+
+/* Touch-friendly button sizes */
+@media (max-width: 768px) {
+  button,
+  a.btn,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 16px;
+  }
+  
+  /* Form inputs - prevent iOS zoom on focus */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    min-height: 48px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 12px 16px;
+  }
+  
+  /* Checkboxes and radio buttons */
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-width: 32px;
+    min-height: 32px;
+    cursor: pointer;
+  }
+  
+  /* Links and clickable elements */
+  a,
+  [onclick],
+  [tabindex="0"] {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Ensure spacing between tappable elements */
+  button + button,
+  a + a,
+  button + a,
+  a + button {
+    margin-left: 8px;
+  }
+}
+
+/* Active state feedback for touch */
+button:active,
+a.btn:active,
+[role="button"]:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Safe area insets for notched devices (iPhone X+) */
+.safe-area-inset {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+
+/* Prevent text selection on buttons (improves tap feel) */
+button,
+a.btn,
+[role="button"] {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+/* Improve touch scrolling */
+@media (max-width: 768px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Prevent double-tap zoom on buttons */
+@media (max-width: 768px) {
+  button,
+  a.btn,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+}

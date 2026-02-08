@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import PickupModal from '../components/PickupModal'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
 import { bgColor, textColor, hoverTextColor } from '../utils/classNames'
 import { contactInfo } from '../config/contact'
 
@@ -8,7 +11,29 @@ export default function AboutUs() {
   const [isPickupModalOpen, setIsPickupModalOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="About Us - Laundryman | Premium Laundry & Dry Cleaning in Ranchi"
+        description="Learn about Laundryman - Ranchi's trusted laundry and dry cleaning service. 7 years of excellence with German eco-friendly solutions and world-class service."
+        url="/about-us"
+        keywords="about Laundryman, laundry service Ranchi history, dry cleaning company Ranchi, Laundryman story"
+      />
+      <SchemaMarkup
+        type="localBusiness"
+        pageData={{
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'About Us', path: '/about-us' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About Us', path: '/about-us' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -331,6 +356,7 @@ export default function AboutUs() {
         onClose={() => setIsPickupModalOpen(false)} 
       />
     </div>
+    </>
   )
 }
 

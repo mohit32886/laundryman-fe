@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import B2BQuoteModal from '../components/B2BQuoteModal'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
 import { contactInfo } from '../config/contact'
 import { heroGradient, bgColor, textColor } from '../utils/classNames'
 
@@ -170,7 +173,33 @@ export default function B2BServices() {
   ]
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="B2B Laundry Services - Corporate, Hotel & Institutional Solutions | Laundryman"
+        description="Professional B2B laundry and dry cleaning services for hotels, corporate offices, hospitals, and institutions in Ranchi. Customized solutions, bulk pricing, and dedicated support."
+        url="/b2b-services"
+        keywords="B2B laundry Ranchi, corporate laundry service, hotel laundry service, institutional laundry Ranchi, bulk laundry service"
+      />
+      <SchemaMarkup
+        type="service"
+        pageData={{
+          service: {
+            name: 'B2B Laundry & Dry Cleaning Services',
+            description: 'Professional B2B laundry solutions for hotels, corporate offices, hospitals, and institutions'
+          },
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'B2B Services', path: '/b2b-services' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'B2B Services', path: '/b2b-services' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className={`${heroGradient()} text-white py-20 relative overflow-hidden`}>
         {/* Background Pattern */}
@@ -998,5 +1027,6 @@ export default function B2BServices() {
         onClose={() => setIsB2BQuoteModalOpen(false)} 
       />
     </div>
+    </>
   )
 }
