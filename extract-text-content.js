@@ -16,9 +16,10 @@ function extractTextFromJSX(content) {
   }
   
   // Extract string literals in arrays/objects
-  const stringLiteralRegex = /['"`]([^'"`]+)['"`]/g;
+  // Use backreference to ensure opening and closing quotes match
+  const stringLiteralRegex = /(['"`])([^\1]+)\1/g;
   while ((match = stringLiteralRegex.exec(content)) !== null) {
-    const text = match[1];
+    const text = match[2]; // match[1] is the quote, match[2] is the content
     // Filter out URLs, class names, and code
     if (text && 
         !text.startsWith('http') && 
