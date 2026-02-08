@@ -49,7 +49,7 @@ const galleryItems = [
   }
 ];
 
-const BeforeAfterSlider = ({ before, after, description }) => {
+const BeforeAfterSlider = ({ before, after, description, category }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -77,8 +77,11 @@ const BeforeAfterSlider = ({ before, after, description }) => {
         <div className="absolute inset-0">
           <img
             src={after}
-            alt="After cleaning"
+            alt={`After cleaning - ${description || category || 'cleaning result'}`}
             className="w-full h-full object-cover"
+            loading="lazy"
+            width={800}
+            height={600}
             onError={(e) => {
               e.target.src = 'https://via.placeholder.com/800x600/24bcee/ffffff?text=AFTER';
             }}
@@ -95,8 +98,11 @@ const BeforeAfterSlider = ({ before, after, description }) => {
         >
           <img
             src={before}
-            alt="Before cleaning"
+            alt={`Before cleaning - ${description || category || 'item needing cleaning'}`}
             className="w-full h-full object-cover"
+            loading="lazy"
+            width={800}
+            height={600}
             onError={(e) => {
               e.target.src = 'https://via.placeholder.com/800x600/dc2626/ffffff?text=BEFORE';
             }}
@@ -158,6 +164,7 @@ const BeforeAfterGallery = () => {
                 before={item.before}
                 after={item.after}
                 description={item.description}
+                category={item.category}
               />
             </motion.div>
           ))}

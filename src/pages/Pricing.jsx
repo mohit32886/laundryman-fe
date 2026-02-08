@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { headingClasses, bodyTextClasses } from '../utils/fonts';
 import { bgColor, textColor } from '../utils/classNames';
+import { colors } from '../config/colors';
 import MetaTags from '../components/SEO/MetaTags';
 import SchemaMarkup from '../components/SEO/SchemaMarkup';
 import Breadcrumb from '../components/Breadcrumb';
@@ -177,7 +178,7 @@ const Pricing = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={contactInfo.getTelUrl()}
-              className="bg-white text-[#1879a2] px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+              className={`bg-white ${textColor('primary')} px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors`}
             >
               📞 Call: {contactInfo.display.phone}
             </a>

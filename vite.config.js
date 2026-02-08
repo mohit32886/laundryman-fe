@@ -20,8 +20,9 @@ export default defineConfig({
     //   compress: { drop_console: true }
     // }
     // For now, using esbuild with console removal in production
+    // Only remove console.log and console.debug, preserve console.error and console.warn for production debugging
     esbuild: {
-      drop: ['console', 'debugger'], // Remove console.log in production
+      drop: ['console.log', 'console.debug', 'debugger'],
     },
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,

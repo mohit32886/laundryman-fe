@@ -193,8 +193,11 @@ export const logPerformanceSummary = () => {
   console.groupEnd()
 }
 
-// Auto-initialize in development
-if (import.meta.env.DEV) {
+// Opt-in initialization via environment variable or explicit call
+// Set VITE_ENABLE_PERFORMANCE_MONITOR=true in .env to auto-initialize
+const shouldAutoInit = import.meta.env.VITE_ENABLE_PERFORMANCE_MONITOR === 'true'
+
+if (shouldAutoInit && import.meta.env.DEV) {
   // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPerformanceMonitor)
@@ -209,3 +212,6 @@ if (import.meta.env.DEV) {
     }, 1000)
   })
 }
+
+// Export initialization function for manual opt-in
+export { initPerformanceMonitor, logPerformanceSummary }

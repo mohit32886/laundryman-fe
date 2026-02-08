@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { bgColor, hoverBgColor, textColor, borderColor } from '../../utils/classNames'
+import { bgColor, hoverBgColor, textColor, borderColor, focusRingColor } from '../../utils/classNames'
 import { buttonTextClasses } from '../../utils/fonts'
 
 /**
@@ -30,26 +30,26 @@ const Button = ({
       ${bgColor('primary')} 
       text-white 
       ${hoverBgColor('primary')}
-      focus:ring-[#1879a2]
+      ${focusRingColor('primary')}
     `,
     outline: `
       border-2 ${borderColor('primary')}
       ${textColor('primary')}
       bg-transparent
       hover:${bgColor('primary')} hover:text-white
-      focus:ring-[#1879a2]
+      ${focusRingColor('primary')}
     `,
     success: `
       bg-green-600
       text-white
       hover:bg-green-700
-      focus:ring-green-600
+      focus:ring-2 focus:ring-green-600
     `,
     whatsapp: `
-      bg-[#25D366]
+      ${bgColor('whatsapp')}
       text-white
-      hover:bg-[#20BA5A]
-      focus:ring-[#25D366]
+      ${hoverBgColor('whatsapp')}
+      ${focusRingColor('secondary')}
     `,
   }
 

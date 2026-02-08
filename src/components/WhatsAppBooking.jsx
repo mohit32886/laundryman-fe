@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { headingClasses, bodyTextClasses, fontWeightClass } from '../utils/fonts'
+import { borderColor } from '../utils/classNames'
 import Button from './ui/Button'
 import { contactInfo } from '../config/contact'
 
@@ -109,7 +110,7 @@ Please confirm availability!`
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                 placeholder="Enter your name"
                 required
               />
@@ -123,7 +124,7 @@ Please confirm availability!`
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                 placeholder="+91 Phone Number"
                 required
               />
@@ -136,7 +137,7 @@ Please confirm availability!`
               <select
                 value={formData.area}
                 onChange={(e) => setFormData({ ...formData, area: e.target.value })}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                 required
               >
                 <option value="">Select your area</option>

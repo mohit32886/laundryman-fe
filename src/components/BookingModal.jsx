@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { headingClasses, bodyTextClasses, fontWeightClass } from '../utils/fonts'
-import { bgColor, textColor } from '../utils/classNames'
+import { bgColor, textColor, borderColor, accentColor } from '../utils/classNames'
+import { colors } from '../config/colors'
 import Button from './ui/Button'
 import { submitPickupForm } from '../services/googleSheetsService'
 import { formStateManager } from '../utils/formStateManager'
 import ResumeBookingPrompt from './ResumeBookingPrompt'
+
+// Constants
+const SUCCESS_MESSAGE_DURATION = 2000 // 2 seconds
+const ERROR_MESSAGE_DURATION = 3000 // 3 seconds
+const MAX_NAME_LENGTH = 100
+const MAX_ADDRESS_LENGTH = 500
+const PHONE_REGEX = /^[6-9]\d{9}$/ // Indian mobile number format
 
 /**
  * BookingModal Component
@@ -25,6 +33,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   const [savedFormData, setSavedFormData] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | null
+  const [errorMessage, setErrorMessage] = useState('')
 
   const services = [
     { id: 'laundry', icon: '🧺', name: 'Laundry', price: 'From ₹60/kg' },
@@ -85,10 +94,57 @@ const BookingModal = ({ isOpen, onClose }) => {
   }
 
   const handleSubmit = async () => {
-    // Validation
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim() || !formData.pickupTime) {
+    // Comprehensive validation
+    setErrorMessage('')
+    
+    // Validate name
+    if (!formData.name.trim()) {
       setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus(null), 3000)
+      setErrorMessage('Please enter your name')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    if (formData.name.trim().length > MAX_NAME_LENGTH) {
+      setSubmitStatus('error')
+      setErrorMessage(`Name must be less than ${MAX_NAME_LENGTH} characters`)
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    
+    // Validate phone number
+    if (!formData.phone.trim()) {
+      setSubmitStatus('error')
+      setErrorMessage('Please enter your phone number')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    const cleanPhone = formData.phone.replace(/\D/g, '') // Remove non-digits
+    if (!PHONE_REGEX.test(cleanPhone)) {
+      setSubmitStatus('error')
+      setErrorMessage('Please enter a valid 10-digit mobile number starting with 6-9')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    
+    // Validate address
+    if (!formData.address.trim()) {
+      setSubmitStatus('error')
+      setErrorMessage('Please enter your pickup address')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    if (formData.address.trim().length > MAX_ADDRESS_LENGTH) {
+      setSubmitStatus('error')
+      setErrorMessage(`Address must be less than ${MAX_ADDRESS_LENGTH} characters`)
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
+      return
+    }
+    
+    // Validate pickup time
+    if (!formData.pickupTime) {
+      setSubmitStatus('error')
+      setErrorMessage('Please select a pickup time')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
       return
     }
 
@@ -122,15 +178,17 @@ const BookingModal = ({ isOpen, onClose }) => {
         estimatedCost: ''
       })
       
-      // Close modal after 2 seconds
+      // Close modal after success duration
       setTimeout(() => {
         onClose()
         setSubmitStatus(null)
         setCurrentStep(1)
-      }, 2000)
+      }, SUCCESS_MESSAGE_DURATION)
     } catch (error) {
       console.error('Booking failed:', error)
       setSubmitStatus('error')
+      setErrorMessage('Failed to submit booking. Please try again or contact us directly.')
+      setTimeout(() => setSubmitStatus(null), ERROR_MESSAGE_DURATION)
     } finally {
       setIsSubmitting(false)
     }
@@ -246,8 +304,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                           className={`
                             p-6 rounded-xl border-2 transition-all
                             ${formData.service === service.id
-                              ? 'border-[#1879a2] bg-[#1879a2]/5'
-                              : 'border-gray-200 hover:border-[#1879a2]/50'
+                              ? `${borderColor('primary')} bg-[${colors.primary.DEFAULT}]/5`
+                              : `border-gray-200 hover:${borderColor('primary')}/50`
                             }
                           `}
                         >
@@ -295,9 +353,10 @@ const BookingModal = ({ isOpen, onClose }) => {
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                           placeholder="Enter your name"
                           required
+                          maxLength={MAX_NAME_LENGTH}
                         />
                       </div>
 
@@ -310,9 +369,10 @@ const BookingModal = ({ isOpen, onClose }) => {
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           pattern="[0-9]{10}"
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                           placeholder="+91 Phone Number"
                           required
+                          maxLength={10}
                         />
                       </div>
 
@@ -324,9 +384,10 @@ const BookingModal = ({ isOpen, onClose }) => {
                           type="text"
                           value={formData.address}
                           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none text-base"
+                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
                           placeholder="Start typing your address..."
                           required
+                          maxLength={MAX_ADDRESS_LENGTH}
                         />
                       </div>
 
@@ -342,8 +403,8 @@ const BookingModal = ({ isOpen, onClose }) => {
                               className={`
                                 p-4 rounded-lg border-2 text-left transition-all
                                 ${formData.pickupTime === slot.id
-                                  ? 'border-[#1879a2] bg-[#1879a2]/5'
-                                  : 'border-gray-200 hover:border-[#1879a2]/50'
+                                  ? `${borderColor('primary')} bg-[${colors.primary.DEFAULT}]/5`
+                                  : `border-gray-200 hover:${borderColor('primary')}/50`
                                 }
                               `}
                             >
@@ -426,12 +487,12 @@ const BookingModal = ({ isOpen, onClose }) => {
                     )}
                     {submitStatus === 'error' && (
                       <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm mb-4">
-                        ✗ Please fill in all required fields.
+                        ✗ {errorMessage || 'Please fill in all required fields.'}
                       </div>
                     )}
 
                     <label className="flex items-start gap-3 mb-6 cursor-pointer">
-                      <input type="checkbox" required className="mt-1 w-4 h-4 accent-[#1879a2]" />
+                      <input type="checkbox" required className={`mt-1 w-4 h-4 ${accentColor('primary')}`} />
                       <span className={`${bodyTextClasses('sm')}`}>
                         I agree to the{' '}
                         <a href="/terms-and-conditions" className={textColor('primary')}>

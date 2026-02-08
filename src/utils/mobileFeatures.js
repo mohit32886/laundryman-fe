@@ -118,10 +118,9 @@ export const mobileFeatures = {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text)
         console.log('Text copied to clipboard')
-        // Show a toast notification (you can integrate with your UI library)
-        if (typeof window !== 'undefined' && window.alert) {
-          alert('Link copied to clipboard!')
-        }
+        // Note: For better UX, consider integrating with a toast notification library
+        // like react-hot-toast or sonner instead of using alert()
+        // For now, we'll just log it - the calling component can show a toast if needed
       } else {
         // Fallback for older browsers
         const textArea = document.createElement('textarea')

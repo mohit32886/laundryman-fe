@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { bodyTextClasses, fontWeightClass } from '../utils/fonts'
-import { textColor } from '../utils/classNames'
+import { textColor, borderColor } from '../utils/classNames'
 import Button from './ui/Button'
 
 /**
@@ -25,7 +25,7 @@ const ResumeBookingPrompt = ({ savedData, onResume, onStartFresh, onDismiss }) =
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
-        className="fixed bottom-4 right-4 z-50 bg-white rounded-xl shadow-2xl p-6 max-w-md border-2 border-[#1879a2]"
+        className={`fixed bottom-4 right-4 z-50 bg-white rounded-xl shadow-2xl p-6 max-w-md border-2 ${borderColor('primary')}`}
       >
         <button
           onClick={onDismiss}

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { textColor, hoverTextColor, bgColor, hoverBgColor } from '../utils/classNames'
+import { colors } from '../config/colors'
 import { contactInfo } from '../config/contact'
 import CallbackModal from './CallbackModal'
 
@@ -317,7 +318,7 @@ export default function Navbar() {
                         setIsMenuOpen(false)
                         setIsCallbackModalOpen(true)
                       }}
-                      className="w-full min-h-[48px] bg-[#1879a2] text-white px-4 py-3 rounded-md hover:bg-[#145e7d] font-medium transition-colors"
+                      className={`w-full min-h-[48px] ${bgColor('primary')} text-white px-4 py-3 rounded-md ${hoverBgColor('primary')} font-medium transition-colors`}
                     >
                       Get Callback
                     </button>

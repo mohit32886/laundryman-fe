@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { bgColor, textColor } from '../utils/classNames';
+import { bgColor, textColor, borderColor, accentColor } from '../utils/classNames';
 import { headingClasses, bodyTextClasses } from '../utils/fonts';
 import PickupModal from './PickupModal';
 
@@ -55,7 +55,7 @@ const PricingCalculator = () => {
             <select
               value={serviceType}
               onChange={(e) => setServiceType(e.target.value)}
-              className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#1879a2] focus:outline-none ${bodyTextClasses()}`}
+              className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none ${bodyTextClasses()}`}
             >
               <option value="laundry">Laundry - Wash & Fold</option>
               <option value="dry-clean">Dry Cleaning - Designer Wear</option>
@@ -77,7 +77,7 @@ const PricingCalculator = () => {
                 max="50"
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
-                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#1879a2]"
+                className={`flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ${accentColor('primary')}`}
               />
               <span className={`${bodyTextClasses()} font-bold text-2xl ${textColor('primary')} min-w-[60px] text-right`}>
                 {quantity}
@@ -91,14 +91,14 @@ const PricingCalculator = () => {
               Delivery speed?
             </label>
             <div className="space-y-3">
-              <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-[#1879a2] transition-colors">
+              <label className={`flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:${borderColor('primary')} transition-colors`}>
                 <input
                   type="radio"
                   name="delivery"
                   value="regular"
                   checked={deliverySpeed === 'regular'}
                   onChange={(e) => setDeliverySpeed(e.target.value)}
-                  className="mr-3 w-4 h-4 accent-[#1879a2]"
+                  className={`mr-3 w-4 h-4 ${accentColor('primary')}`}
                 />
                 <div className="flex-1">
                   <span className={`${bodyTextClasses()} font-bold`}>Regular</span>
@@ -107,14 +107,14 @@ const PricingCalculator = () => {
                   </span>
                 </div>
               </label>
-              <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-[#1879a2] transition-colors">
+              <label className={`flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:${borderColor('primary')} transition-colors`}>
                 <input
                   type="radio"
                   name="delivery"
                   value="express"
                   checked={deliverySpeed === 'express'}
                   onChange={(e) => setDeliverySpeed(e.target.value)}
-                  className="mr-3 w-4 h-4 accent-[#1879a2]"
+                  className={`mr-3 w-4 h-4 ${accentColor('primary')}`}
                 />
                 <div className="flex-1">
                   <span className={`${bodyTextClasses()} font-bold`}>Express</span>
@@ -131,7 +131,7 @@ const PricingCalculator = () => {
             key={final}
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
-            className="bg-white rounded-xl p-6 border-l-4 border-[#1879a2] shadow-lg"
+            className={`bg-white rounded-xl p-6 border-l-4 ${borderColor('primary')} shadow-lg`}
           >
             <div className="space-y-2">
               <div className="flex justify-between items-center">

@@ -11,6 +11,10 @@ const SchemaMarkup = ({ type = 'website', pageData = {} }) => {
   const baseUrl = 'https://laundryman.pro';
 
   // LocalBusiness Schema (default for most pages)
+  // Use pageData.coordinates if provided (for location-specific pages), otherwise use default
+  const defaultCoordinates = { latitude: '23.3441', longitude: '85.3096' }
+  const coordinates = pageData.coordinates || defaultCoordinates
+  
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -19,16 +23,16 @@ const SchemaMarkup = ({ type = 'website', pageData = {} }) => {
     telephone: '+91-9006463666',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '01, Opp. Bharat Petroleum, Lalgutwa',
-      addressLocality: 'Ranchi',
-      addressRegion: 'Jharkhand',
-      postalCode: '835302',
-      addressCountry: 'IN'
+      streetAddress: pageData.address?.streetAddress || '01, Opp. Bharat Petroleum, Lalgutwa',
+      addressLocality: pageData.address?.addressLocality || 'Ranchi',
+      addressRegion: pageData.address?.addressRegion || 'Jharkhand',
+      postalCode: pageData.address?.postalCode || '835302',
+      addressCountry: pageData.address?.addressCountry || 'IN'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '23.3441',
-      longitude: '85.3096'
+      latitude: coordinates.latitude,
+      longitude: coordinates.longitude
     },
     aggregateRating: {
       '@type': 'AggregateRating',
