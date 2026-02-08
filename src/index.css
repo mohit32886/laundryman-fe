@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  /* Logo-based color palette - Update colors in src/config/colors.js to change these */
+  --color-brand-50: #e6f4f8;
+  --color-brand-100: #cce9f1;
+  --color-brand-200: #99d3e3;
+  --color-brand-300: #66bdd5;
+  --color-brand-400: #35a0d9;
+  --color-brand-500: #24bcee;
+  --color-brand-600: #1879a2;
+  --color-brand-700: #145e7d;
+  --color-brand-800: #0f4358;
+  --color-brand-900: #0a2833;
+  
+  /* Primary colors - Configured in src/config/colors.js */
+  --color-primary: #1879a2;
+  --color-primary-light: #24bcee;
+  --color-primary-medium: #35a0d9;
+  --color-primary-dark: #145e7d;
+  
+  /* Background colors */
+  --color-bg-light: #e6f4f8;
+  --color-bg-lighter: #cce9f1;
+  
+  /* Secondary colors (keep green for WhatsApp) */
+  --color-secondary: #10b981;
+  --color-secondary-light: #34d399;
+  --color-secondary-dark: #059669;
+  
+  /* WhatsApp colors */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA5A;
+  
+  /* Create Tailwind utilities from CSS variables */
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-medium: var(--color-primary-medium);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-bg-light: var(--color-bg-light);
+  --color-bg-lighter: var(--color-bg-lighter);
+  --color-secondary: var(--color-secondary);
+  --color-whatsapp: var(--color-whatsapp);
+  --color-whatsapp-hover: var(--color-whatsapp-hover);
+  
+  /* Font families - Configured in src/config/fonts.js */
+  --font-primary: "Roboto", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+  
+  /* Font weights - Configured in src/config/fonts.js */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+    @apply antialiased text-gray-900;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    @apply font-bold;
+  }
+  
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
