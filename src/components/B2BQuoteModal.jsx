@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { bgColor, hoverBgColor } from '../utils/classNames'
+import { bgColor, hoverBgColor, focusRingColor } from '../utils/classNames'
 import { submitB2BQuoteForm } from '../services/googleSheetsService'
 
 export default function B2BQuoteModal({ isOpen, onClose }) {
@@ -134,7 +134,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.companyName}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                   placeholder="Enter company name"
                 />
               </div>
@@ -152,7 +152,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.contactName}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                   placeholder="Enter contact person name"
                 />
               </div>
@@ -172,7 +172,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                   placeholder="Enter email address"
                 />
               </div>
@@ -190,7 +190,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.phone}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                   placeholder="Enter phone number"
                 />
               </div>
@@ -209,7 +209,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.industry}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                 >
                   <option value="">Select industry</option>
                   <option value="corporate">Corporate Offices</option>
@@ -233,7 +233,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                   value={formData.volume}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                 >
                   <option value="">Select volume</option>
                   <option value="0-100">0 - 100 kg</option>

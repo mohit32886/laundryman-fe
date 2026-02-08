@@ -1,0 +1,82 @@
+================================================================================
+                    LAUNDRYMAN - COPYRIGHT CONTENT EXTRACTION
+================================================================================
+
+Extracted from: Laundryman Website (laundryman.pro)
+Date Extracted: February 8, 2026
+
+================================================================================
+                           FOOTER COPYRIGHT NOTICES
+================================================================================
+
+Source: src/components/Footer.jsx
+
+1. Main Copyright Notice:
+   "© 2025 Laundryman. All rights reserved."
+
+2. Website Section:
+   "Website: | © 2025 Laundryman"
+
+================================================================================
+                      INTELLECTUAL PROPERTY STATEMENT
+================================================================================
+
+Source: src/components/TermsModal.jsx & src/pages/TermsAndConditions.jsx
+
+Section 13 - Intellectual Property:
+"All content, logos, and materials on our website and app are property of 
+Laundryman and protected by copyright laws."
+
+================================================================================
+                           COMPANY INFORMATION
+================================================================================
+
+Operated by: My Online Services
+
+Registered Address: 
+01, Opp. Bharat Petroleum, Lalgutwa, Daladili Chowk, Ranchi, Jharkhand 835302
+
+Udyam Registration: UDYAM-JH-20-0030562
+
+Contact Information:
+- Email: whitebasketpvtltd@gmail.com
+- Phone: +91 9006463666
+- Website: https://www.laundryman.pro
+
+================================================================================
+                           TERMS & CONDITIONS REFERENCE
+================================================================================
+
+Last Updated: January 2025
+
+The full Terms and Conditions document is available at:
+- /terms-and-conditions page on the website
+- Accessible via footer links
+
+Privacy Policy is also available via footer links at:
+- /privacy-policy page on the website
+
+================================================================================
+                              GOVERNING LAW
+================================================================================
+
+"These terms are governed by the laws of India and subject to the jurisdiction 
+of Indian courts."
+
+================================================================================
+                           LIMITATION OF LIABILITY
+================================================================================
+
+"To the maximum extent permitted by law, Laundryman's liability is limited to 
+the service charge paid. We are not liable for indirect, incidental, or 
+consequential damages."
+
+================================================================================
+                                  NOTES
+================================================================================
+
+- All trademarks, logos, and brand names are property of Laundryman
+- Content is protected under Indian copyright laws
+- Unauthorized reproduction or use of content is prohibited
+
+================================================================================

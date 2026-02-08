@@ -131,3 +131,19 @@ export const focusRingColor = (colorKey = 'primary') => {
   return `focus:ring-2 focus:ring-[${color}]`
 }
 
+/**
+ * Get accent color class (for form inputs like range sliders, checkboxes)
+ * @param {string} colorKey - Key from colors config (defaults to 'primary')
+ * @returns {string} Tailwind accent color className
+ */
+export const accentColor = (colorKey = 'primary') => {
+  const colorMap = {
+    primary: colors.primary.DEFAULT,
+    primaryLight: colors.primary.light,
+    secondary: colors.secondary.DEFAULT,
+  }
+  
+  const color = colorMap[colorKey] || colorKey
+  return `accent-[${color}]`
+}
+

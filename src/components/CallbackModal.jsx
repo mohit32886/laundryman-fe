@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { bgColor, hoverBgColor } from '../utils/classNames'
+import { bgColor, hoverBgColor, focusRingColor } from '../utils/classNames'
 import { submitCallbackForm } from '../services/googleSheetsService'
 
 export default function CallbackModal({ isOpen, onClose }) {
@@ -118,7 +118,7 @@ export default function CallbackModal({ isOpen, onClose }) {
                 value={formData.name}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                 placeholder="Enter your name"
               />
             </div>
@@ -136,7 +136,7 @@ export default function CallbackModal({ isOpen, onClose }) {
                 value={formData.phone}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                 placeholder="Enter your phone number"
               />
             </div>
@@ -152,7 +152,7 @@ export default function CallbackModal({ isOpen, onClose }) {
                 value={formData.preferredTime}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
               >
                 <option value="">Select preferred time</option>
                 <option value="9am-12pm">9 AM - 12 PM</option>
@@ -175,7 +175,7 @@ export default function CallbackModal({ isOpen, onClose }) {
                 value={formData.message}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
                 placeholder="Any specific query or requirement..."
               ></textarea>
             </div>

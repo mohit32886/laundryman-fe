@@ -1,3 +1,7 @@
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
+
 export default function StoreLocator() {
   const cities = [
     'Delhi', 'Ahmedabad', 'Bangalore', 'Chennai', 'Hyderabad', 'Mumbai',
@@ -5,7 +9,29 @@ export default function StoreLocator() {
   ]
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="Store Locator - Find Laundryman Locations in Ranchi"
+        description="Find Laundryman stores near you in Ranchi. Locations in Harmu, Hinoo, Doranda, Lalpur, Kantatoli and more areas. Free pickup and delivery available."
+        url="/store-locator"
+        keywords="Laundryman store locations Ranchi, laundry service near me, dry cleaning locations Ranchi, find Laundryman store"
+      />
+      <SchemaMarkup
+        type="localBusiness"
+        pageData={{
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'Store Locator', path: '/store-locator' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Store Locator', path: '/store-locator' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -114,6 +140,7 @@ export default function StoreLocator() {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

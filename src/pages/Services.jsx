@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { heroGradient, textColor } from '../utils/classNames'
+import { colors } from '../config/colors'
 import PickupModal from '../components/PickupModal'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
+import Breadcrumb from '../components/Breadcrumb'
 import { contactInfo } from '../config/contact'
 
 export default function Services() {
@@ -22,9 +27,35 @@ export default function Services() {
   }, [location])
 
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="Our Services - Laundry, Dry Cleaning, Shoes | Laundryman Ranchi"
+        description="Comprehensive laundry and dry cleaning services in Ranchi. Laundry, dry cleaning, shoe cleaning, sofa cleaning, and B2B services. Free home pickup & delivery."
+        url="/services"
+        keywords="laundry service Ranchi, dry cleaning Ranchi, shoe cleaning Ranchi, sofa cleaning Ranchi, wash and fold Ranchi"
+      />
+      <SchemaMarkup
+        type="service"
+        pageData={{
+          service: {
+            name: 'Laundry & Dry Cleaning Services',
+            description: 'Comprehensive laundry and dry cleaning services including wash & fold, dry cleaning, shoe cleaning, and sofa cleaning'
+          },
+          breadcrumbs: [
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' }
+          ]
+        }}
+      />
+      <Breadcrumb
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' }
+        ]}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
+      <section className={`${heroGradient()} text-white py-16`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Expert Services</h1>
           <p className="text-xl">One-stop shop for all your cleaning needs</p>
@@ -47,7 +78,7 @@ export default function Services() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                 <div className="p-8">
-                  <h2 className="text-3xl font-bold mb-4 text-[#1879a2]">Laundry Service</h2>
+                  <h2 className={`text-3xl font-bold mb-4 ${textColor('primary')}`}>Laundry Service</h2>
                   <p className="text-gray-700 mb-6">Professional laundry service with wash & fold or wash & steam iron options.</p>
                   <div className="space-y-4">
                     <div>
@@ -62,7 +93,7 @@ export default function Services() {
                 </div>
                 <div className="relative h-64 md:h-auto flex items-center justify-center bg-gradient-to-br from-[#e6f4f8] to-white p-8">
                   <svg className="w-full h-full max-w-md" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 64c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zm64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zm64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zM80 256c0-61.9 50.1-112 112-112s112 50.1 112 112s-50.1 112-112 112s-112-50.1-112-112zm112 48c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48z" fill="#1879a2"/>
+                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm88 64c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zm64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zm64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24s-24-10.7-24-24s10.7-24 24-24zM80 256c0-61.9 50.1-112 112-112s112 50.1 112 112s-50.1 112-112 112s-112-50.1-112-112zm112 48c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48z" fill={colors.primary.DEFAULT}/>
                   </svg>
                 </div>
               </div>
@@ -86,7 +117,7 @@ export default function Services() {
                   </svg>
                 </div>
                 <div className="p-8 order-1 md:order-2">
-                  <h2 className="text-3xl font-bold mb-4 text-[#1879a2]">Dry Cleaning Service</h2>
+                  <h2 className={`text-3xl font-bold mb-4 ${textColor('primary')}`}>Dry Cleaning Service</h2>
                   <p className="text-gray-700 mb-6">Best dry cleaning service for designer wear, heavy ethnic wear & woollens using world's latest Lagoon technology.</p>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Haute couture and designer wear</li>
@@ -349,6 +380,7 @@ export default function Services() {
         onClose={() => setIsPickupModalOpen(false)} 
       />
     </div>
+    </>
   )
 }
 

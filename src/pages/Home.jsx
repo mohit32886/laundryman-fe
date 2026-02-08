@@ -4,12 +4,20 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import TestimonialCarousel from '../components/TestimonialCarousel'
 import PickupModal from '../components/PickupModal'
+import WhatsAppBooking from '../components/WhatsAppBooking'
+import PricingCalculator from '../components/PricingCalculator'
+import RatingBadge from '../components/ui/RatingBadge'
+import BeforeAfterGallery from '../components/BeforeAfterGallery'
+import CertificationBadges from '../components/CertificationBadges'
+import MetaTags from '../components/SEO/MetaTags'
+import SchemaMarkup from '../components/SEO/SchemaMarkup'
 import { heroGradient, bgColor, hoverBgColor, textColor, hoverTextColor } from '../utils/classNames'
 import { contactInfo } from '../config/contact'
 
 export default function Home() {
   const location = useLocation()
   const [isPickupModalOpen, setIsPickupModalOpen] = useState(false)
+  const [showWhatsAppBooking, setShowWhatsAppBooking] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState(null)
 
   useEffect(() => {
@@ -23,8 +31,42 @@ export default function Home() {
     }
   }, [location])
 
+  // Listen for pickup modal open event from BeforeAfterGallery
+  useEffect(() => {
+    const handleOpenPickupModal = () => {
+      setIsPickupModalOpen(true)
+    }
+    window.addEventListener('openPickupModal', handleOpenPickupModal)
+    return () => window.removeEventListener('openPickupModal', handleOpenPickupModal)
+  }, [])
+
+  // FAQ data for schema markup
+  const faqs = [
+    { question: 'What is dry cleaning?', answer: 'Dry cleaning is a professional cleaning process that uses specialized solvents instead of water to clean delicate fabrics and garments. At Laundryman, we use the world\'s latest Lagoon technology – a completely eco-friendly and Woolmark certified process that is gentle on fabrics while being tough on stains.' },
+    { question: 'What dry cleaning services does Laundryman provide in Ranchi?', answer: 'Laundryman offers comprehensive dry cleaning services in Ranchi including haute couture, bridal wear (lehengas, sherwanis), silk sarees, designer wear, woolens, suits, blazers, jackets, carpets, blankets, curtains, blinds, soft toys, suitcases/trolleys, and leather items.' },
+    { question: 'Why is Laundryman the best dry cleaner in Ranchi?', answer: 'Laundryman stands out as Ranchi\'s premier dry cleaning service due to our world-renowned Lagoon technology, German eco-friendly cleaning solutions, and 7 years of trusted excellence. Our process is 100% color bleeding and shrinkage proof.' },
+    { question: 'How to avail services from Laundryman in Ranchi?', answer: 'Availing Laundryman\'s services is simple and convenient! You can schedule a free home pickup by calling us, messaging on WhatsApp, or booking through our website. Our delivery executive will collect your garments from your doorstep at your preferred time.' },
+    { question: 'Does Laundryman provide free home delivery in Ranchi?', answer: 'Absolutely! Laundryman provides FREE home pickup and delivery across Ranchi. There are no hidden charges for collection or delivery. Simply schedule a pickup at your convenient time.' }
+  ];
+
   return (
-    <div className="bg-white">
+    <>
+      <MetaTags
+        title="Best Laundry & Dry Cleaning Service in Ranchi | Laundryman"
+        description="Premium laundry and dry cleaning in Ranchi with German eco-friendly solutions. Free home pickup & delivery. 20% off first order. World-renowned machines and Lagoon technology."
+        url="/"
+        keywords="laundry service Ranchi, dry cleaning Ranchi, laundry pickup Ranchi, laundry delivery Ranchi, eco-friendly cleaning Ranchi"
+      />
+      <SchemaMarkup
+        type="website"
+        pageData={{
+          faqs: faqs,
+          breadcrumbs: [
+            { name: 'Home', path: '/' }
+          ]
+        }}
+      />
+      <div className="bg-white">
       {/* Hero Section */}
       <section className={`${heroGradient()} text-white py-20`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,7 +115,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <motion.button 
-                onClick={() => window.open(contactInfo.getWhatsAppUrl(), '_blank')}
+                onClick={() => setShowWhatsAppBooking(true)}
                 className="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-lg font-semibold flex items-center justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -81,7 +123,7 @@ export default function Home() {
                 <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                 </svg>
-                Chat On WhatsApp
+                💬 Quick Quote on WhatsApp
               </motion.button>
               <motion.button 
                 onClick={() => setIsPickupModalOpen(true)}
@@ -92,9 +134,20 @@ export default function Home() {
                 Schedule Free Pickup
               </motion.button>
             </motion.div>
+            <motion.div
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <RatingBadge theme="light" rating={4.9} count={2400} />
+            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {/* Pricing Calculator */}
+      <PricingCalculator />
 
       {/* Experience Trust Banner */}
       <section className={`${bgColor('primary')} text-white py-8`}>
@@ -138,6 +191,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Testimonials Carousel */}
+      <TestimonialCarousel />
 
       {/* Features Section */}
       <section className="py-16 bg-gray-50">
@@ -337,6 +393,9 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* Certification Badges */}
+          <CertificationBadges />
         </div>
       </section>
 
@@ -361,6 +420,7 @@ export default function Home() {
                 bg: bgColor('bgLight'),
                 title: 'Laundry',
                 desc: 'Wash & Fold | Wash & Steam Iron',
+                price: 'Starting from ₹60/kg',
                 link: null
               },
               {
@@ -375,6 +435,7 @@ export default function Home() {
                 bg: 'bg-green-100',
                 title: 'Dry Cleaning',
                 desc: 'Designer Wear, Heavy Ethnic Wear & Woollens',
+                price: 'Starting from ₹150/pc',
                 link: null
               },
               {
@@ -392,6 +453,7 @@ export default function Home() {
                 bg: 'bg-purple-100',
                 title: 'Shoe Cleaning',
                 desc: 'Shoe Cleaning, Restoration & Protection',
+                price: 'Starting from ₹300/pair',
                 link: null
               },
               {
@@ -406,6 +468,7 @@ export default function Home() {
                 bg: 'bg-teal-100',
                 title: 'Sofa Cleaning',
                 desc: 'Deep Cleaning & Stain Removal for Upholstery',
+                price: 'Starting from ₹500/seat',
                 link: null
               },
               {
@@ -437,6 +500,11 @@ export default function Home() {
                   </motion.div>
                   <h3 className="text-xl font-semibold mb-3 flex-shrink-0">{service.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed flex-grow">{service.desc}</p>
+                  {service.price && (
+                    <p className={`${textColor('primary')} font-bold mt-2 text-sm flex-shrink-0`}>
+                      {service.price}
+                    </p>
+                  )}
                 </motion.div>
               )
               
@@ -451,6 +519,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Before/After Gallery */}
+      <BeforeAfterGallery />
 
       {/* Delivery Section */}
       <section className="py-16 bg-gray-50">
@@ -642,74 +713,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Carousel */}
-      <section className="py-16 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">What Our Customers Say</h2>
-          <p className="text-center text-gray-600 mb-12">
-            Real feedback from our satisfied customers in Ranchi, Jharkhand
-          </p>
-          
-          <TestimonialCarousel 
-            testimonials={[
-              {
-                name: 'Santosh Gupta',
-                role: 'Senior Lecturer',
-                rating: 5,
-                text: 'I am satisfied with the quality and timelines of service.',
-                location: 'Lalgutwa, Ranchi',
-                serviceUsed: 'Laundry & Dry Cleaning',
-                customerSince: '2 years'
-              },
-              {
-                name: 'Ashish Chawla',
-                role: 'Designer',
-                rating: 5,
-                text: 'I am very happy that Laundryman doesn\'t use PERC. They use organic chemicals.',
-                location: 'Doranda, Ranchi',
-                serviceUsed: 'Dry Cleaning',
-                customerSince: '1 year'
-              },
-              {
-                name: 'Manisha Sharma',
-                role: 'Instagram Blogger',
-                rating: 4,
-                text: 'Premium quality wash & steam iron at affordable rates.',
-                location: 'Harmu, Ranchi',
-                serviceUsed: 'Laundry Service',
-                customerSince: '6 months'
-              },
-              {
-                name: 'Smita Mukherjee',
-                role: 'Home Maker',
-                rating: 5,
-                text: 'Professional Team. On Time Services. Optimal pricing.',
-                location: 'Hinoo, Ranchi',
-                serviceUsed: 'All Services',
-                customerSince: '3 years'
-              },
-              {
-                name: 'Rajesh Kumar',
-                role: 'Business Owner',
-                rating: 5,
-                text: 'Excellent B2B services for our office. Highly reliable and professional.',
-                location: 'Kantatoli, Ranchi',
-                serviceUsed: 'B2B Services',
-                customerSince: '2 years'
-              },
-              {
-                name: 'Priya Singh',
-                role: 'Fashion Designer',
-                rating: 5,
-                text: 'They handle my designer wear with such care. Best dry cleaning service!',
-                location: 'Dhurwa, Ranchi',
-                serviceUsed: 'Dry Cleaning',
-                customerSince: '1.5 years'
-              }
-            ]}
-          />
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section id="faq" className="py-16 scroll-mt-20">
@@ -783,7 +786,14 @@ export default function Home() {
         isOpen={isPickupModalOpen} 
         onClose={() => setIsPickupModalOpen(false)} 
       />
+
+      {/* WhatsApp Booking Modal */}
+      <WhatsAppBooking 
+        isOpen={showWhatsAppBooking} 
+        onClose={() => setShowWhatsAppBooking(false)} 
+      />
     </div>
+    </>
   )
 }
 

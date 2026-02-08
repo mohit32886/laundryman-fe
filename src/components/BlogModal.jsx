@@ -13,7 +13,7 @@ export default function BlogModal({ isOpen, onClose, blogPost }) {
     switch (section.type) {
       case 'intro':
         return (
-          <p key={index} className="text-lg text-gray-700 leading-relaxed mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-[#1879a2] first-letter:mr-2 first-letter:float-left whitespace-pre-line">
+          <p key={index} className={`text-lg text-gray-700 leading-relaxed mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-[${colors.primary.DEFAULT}] first-letter:mr-2 first-letter:float-left whitespace-pre-line`}>
             {section.content}
           </p>
         )
@@ -45,7 +45,7 @@ export default function BlogModal({ isOpen, onClose, blogPost }) {
             <div className="flex items-start gap-3">
               <span className="text-2xl">💡</span>
               <div>
-                <p className="font-semibold text-[#1879a2] mb-1">Pro Tip</p>
+                <p className={`font-semibold text-[${colors.primary.DEFAULT}] mb-1`}>Pro Tip</p>
                 <p className="text-gray-700">{section.content}</p>
               </div>
             </div>

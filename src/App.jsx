@@ -11,6 +11,11 @@ import ContactUs from './pages/ContactUs'
 import AboutUs from './pages/AboutUs'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
+import Harmu from './pages/locations/Harmu'
+import Hinoo from './pages/locations/Hinoo'
+import Doranda from './pages/locations/Doranda'
+import Lalpur from './pages/locations/Lalpur'
+import Kantatoli from './pages/locations/Kantatoli'
 
 function App() {
   return (
@@ -28,6 +33,11 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/locations/harmu" element={<Harmu />} />
+          <Route path="/locations/hinoo" element={<Hinoo />} />
+          <Route path="/locations/doranda" element={<Doranda />} />
+          <Route path="/locations/lalpur" element={<Lalpur />} />
+          <Route path="/locations/kantatoli" element={<Kantatoli />} />
         </Routes>
       </Layout>
     </BrowserRouter>
