@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import TestimonialCarousel from '../components/TestimonialCarousel'
 import PickupModal from '../components/PickupModal'
 import WhatsAppBooking from '../components/WhatsAppBooking'
-import PricingCalculator from '../components/PricingCalculator'
 import RatingBadge from '../components/ui/RatingBadge'
 import BeforeAfterGallery from '../components/BeforeAfterGallery'
 import CertificationBadges from '../components/CertificationBadges'
@@ -145,9 +144,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Pricing Calculator */}
-      <PricingCalculator />
 
       {/* Experience Trust Banner */}
       <section className={`${bgColor('primary')} text-white py-8`}>
@@ -419,7 +415,7 @@ export default function Home() {
                 ),
                 bg: bgColor('bgLight'),
                 title: 'Laundry',
-                desc: 'Wash & Fold | Wash & Steam Iron',
+                desc: 'Wash & Steam Iron',
                 price: 'Starting from ₹60/kg',
                 link: null
               },
@@ -733,7 +729,7 @@ export default function Home() {
               { q: 'Can I walk-in and drop clothes at Laundryman store in Ranchi?', a: 'Yes, you can walk-in to our Laundryman store in Ranchi to drop off your clothes. Our friendly staff will assist you with garment inspection, provide you with a detailed receipt, and give you an estimated delivery time. However, for your convenience, we highly recommend our free home pickup service – saving you time and effort while ensuring the same premium quality service.' },
               { q: 'Does Laundryman have express delivery for dry cleaning in Ranchi?', a: 'Yes, Laundryman offers express delivery service for customers who need their garments urgently. With express service, you can get your dry cleaning done in same-day or next-day delivery. Express delivery is charged at 1.5 times the regular price and is subject to availability. This is perfect for last-minute events, business meetings, or emergencies. Contact us to check express delivery availability for your order.' },
               { q: 'How good is Laundryman\'s shoe cleaning service in Ranchi?', a: 'Laundryman\'s shoe cleaning service in Ranchi is exceptional! We offer comprehensive shoe care including deep cleaning, stain removal, restoration, and protection services. Our experts handle all types of footwear – sneakers, leather shoes, formal shoes, sports shoes, and more. We use specialized cleaning solutions and techniques to restore your shoes to their original glory. Delivery time for shoe cleaning is 3-5 days.' },
-              { q: 'What makes Laundryman\'s laundry service different?', a: 'Laundryman\'s laundry service stands apart with our premium Wash & Fold and Wash & Steam Iron options. We use world-renowned washing machines, German eco-friendly detergents, and follow a strict 6-stage process: Sorting & Inspection, Stain Treatment, Processing, Finishing, Quality Check, and Packing. Each customer gets a separate wash cycle, and our expert steam ironing gives your clothes a crisp, professional finish.' },
+              { q: 'What makes Laundryman\'s laundry service different?', a: 'Laundryman\'s laundry service stands apart with our premium Wash & Steam Iron option. We use world-renowned washing machines, German eco-friendly detergents, and follow a strict 6-stage process: Sorting & Inspection, Stain Treatment, Processing, Finishing, Quality Check, and Packing. Each customer gets a separate wash cycle, and our expert steam ironing gives your clothes a crisp, professional finish.' },
               { q: 'Does Laundryman provide B2B laundry services for businesses?', a: 'Yes, Laundryman offers specialized B2B laundry and dry cleaning services for businesses in Ranchi. We cater to hotels, corporate offices, hospitals, gyms, salons, and other institutions with customized solutions, dedicated pickup schedules, and competitive bulk pricing. Our B2B services ensure consistent quality, timely delivery, and professional handling of large volumes. Contact us for a customized quote for your business needs.' },
             ].map((faq, idx) => (
               <motion.div

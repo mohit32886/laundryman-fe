@@ -229,7 +229,7 @@ const BookingModal = ({ isOpen, onClose }) => {
 
   const mapServiceType = (serviceId) => {
     const serviceMap = {
-      'laundry': 'laundry-wash-fold',
+      'laundry': 'laundry-wash-iron',
       'dry-clean': 'dry-cleaning',
       'shoes': 'shoe-cleaning',
       'other': 'mixed'

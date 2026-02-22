@@ -5,6 +5,8 @@ import { borderColor } from '../utils/classNames'
 import Button from './ui/Button'
 import { contactInfo } from '../config/contact'
 
+const PHONE_REGEX = /^[6-9]\d{9}$/ // Indian mobile: 10 digits, first digit 6–9
+
 /**
  * WhatsAppBooking Component
  * Quick booking flow that redirects to WhatsApp with pre-filled message
@@ -16,6 +18,7 @@ const WhatsAppBooking = ({ isOpen, onClose, preSelectedService = '' }) => {
     area: '',
     service: preSelectedService
   })
+  const [phoneError, setPhoneError] = useState('')
 
   const areas = [
     'Harmu',
@@ -35,7 +38,24 @@ const WhatsAppBooking = ({ isOpen, onClose, preSelectedService = '' }) => {
     other: 'Other Service'
   }
 
+  const isPhoneValid = () => {
+    const cleanPhone = formData.phone.replace(/\D/g, '')
+    return PHONE_REGEX.test(cleanPhone)
+  }
+
   const handleWhatsAppBooking = () => {
+    setPhoneError('')
+
+    const cleanPhone = formData.phone.replace(/\D/g, '')
+    if (!formData.phone.trim()) {
+      setPhoneError('Please enter your phone number')
+      return
+    }
+    if (!PHONE_REGEX.test(cleanPhone)) {
+      setPhoneError('Please enter a valid 10-digit mobile number (e.g. 9876543210)')
+      return
+    }
+
     const serviceName = serviceNames[formData.service] || formData.service || 'service'
     
     const message = `Hi Laundryman! 
@@ -68,6 +88,7 @@ Please confirm availability!`
       area: '',
       service: preSelectedService
     })
+    setPhoneError('')
     onClose()
   }
 
@@ -123,11 +144,17 @@ Please confirm availability!`
               <input
                 type="tel"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
-                placeholder="+91 Phone Number"
+                onChange={(e) => {
+                  setFormData({ ...formData, phone: e.target.value })
+                  setPhoneError('')
+                }}
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base ${phoneError ? 'border-red-500' : 'border-gray-300'}`}
+                placeholder="10-digit mobile number"
                 required
               />
+              {phoneError && (
+                <p className="mt-1 text-sm text-red-600">{phoneError}</p>
+              )}
             </div>
 
             <div>
@@ -153,7 +180,7 @@ Please confirm availability!`
             fullWidth
             size="large"
             onClick={handleWhatsAppBooking}
-            disabled={!formData.name || !formData.phone || !formData.area}
+            disabled={!formData.name || !formData.phone || !formData.area || !isPhoneValid()}
           >
             Continue on WhatsApp →
           </Button>

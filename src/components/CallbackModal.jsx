@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { bgColor, hoverBgColor, focusRingColor } from '../utils/classNames'
 import { submitCallbackForm } from '../services/googleSheetsService'
 
+const PHONE_REGEX = /^[6-9]\d{9}$/ // Indian mobile: 10 digits, first digit 6–9
+
 export default function CallbackModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,11 +13,13 @@ export default function CallbackModal({ isOpen, onClose }) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | null
+  const [phoneError, setPhoneError] = useState('')
 
   if (!isOpen) return null
 
   const handleChange = (e) => {
     const { name, value } = e.target
+    if (name === 'phone') setPhoneError('')
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -24,11 +28,21 @@ export default function CallbackModal({ isOpen, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    // Validation
-    if (!formData.name.trim() || !formData.phone.trim()) {
+    setPhoneError('')
+
+    if (!formData.name.trim()) {
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus(null), 3000)
+      return
+    }
+
+    const cleanPhone = formData.phone.replace(/\D/g, '')
+    if (!formData.phone.trim()) {
+      setPhoneError('Please enter your phone number')
+      return
+    }
+    if (!PHONE_REGEX.test(cleanPhone)) {
+      setPhoneError('Please enter a valid 10-digit mobile number (e.g. 9876543210)')
       return
     }
 
@@ -68,6 +82,7 @@ export default function CallbackModal({ isOpen, onClose }) {
         preferredTime: '',
         message: ''
       })
+      setPhoneError('')
       setSubmitStatus(null)
       onClose()
     }
@@ -136,9 +151,14 @@ export default function CallbackModal({ isOpen, onClose }) {
                 value={formData.phone}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
-                placeholder="Enter your phone number"
+                inputMode="tel"
+                autoComplete="tel"
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${phoneError ? 'border-red-500' : 'border-gray-300'} ${focusRingColor('primary')} disabled:bg-gray-100 disabled:cursor-not-allowed`}
+                placeholder="10-digit mobile number"
               />
+              {phoneError && (
+                <p className="mt-1 text-sm text-red-600">{phoneError}</p>
+              )}
             </div>
 
             {/* Preferred Time */}

@@ -213,5 +213,3 @@ if (shouldAutoInit && import.meta.env.DEV) {
   })
 }
 
-// Export initialization function for manual opt-in
-export { initPerformanceMonitor, logPerformanceSummary }

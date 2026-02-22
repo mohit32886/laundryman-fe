@@ -145,13 +145,11 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Link to="/services#laundry" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Laundry Service</Link>
                     <Link to="/services#dry-cleaning" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dry Cleaning Service</Link>
                     <Link to="/services#shoe-cleaning" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Shoe Cleaning Service</Link>
                     <Link to="/services#carpet" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Carpet Dry Cleaning</Link>
                     <Link to="/services#curtain" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Curtain Dry Cleaning</Link>
                     <Link to="/services#leather" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Leather Cleaning</Link>
-                    <Link to="/services#steam-ironing" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Steam Ironing Service</Link>
                     <Link to="/b2b-services" onClick={() => setIsServicesOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 font-semibold border-t mt-1 pt-2">B2B Services</Link>
                   </motion.div>
                 )}

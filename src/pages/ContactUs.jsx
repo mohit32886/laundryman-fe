@@ -4,7 +4,6 @@ import { contactInfo } from '../config/contact'
 import CallbackModal from '../components/CallbackModal'
 import MetaTags from '../components/SEO/MetaTags'
 import SchemaMarkup from '../components/SEO/SchemaMarkup'
-import Breadcrumb from '../components/Breadcrumb'
 import { submitContactForm } from '../services/googleSheetsService'
 
 export default function ContactUs() {
@@ -77,12 +76,6 @@ export default function ContactUs() {
             { name: 'Contact Us', path: '/contact-us' }
           ]
         }}
-      />
-      <Breadcrumb
-        items={[
-          { name: 'Home', path: '/' },
-          { name: 'Contact Us', path: '/contact-us' }
-        ]}
       />
       <div className="bg-white">
       {/* Hero Section */}

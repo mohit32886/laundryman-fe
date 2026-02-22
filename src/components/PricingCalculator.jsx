@@ -57,7 +57,7 @@ const PricingCalculator = () => {
               onChange={(e) => setServiceType(e.target.value)}
               className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none ${bodyTextClasses()}`}
             >
-              <option value="laundry">Laundry - Wash & Fold</option>
+              <option value="laundry">Laundry - Wash & Steam Iron</option>
               <option value="dry-clean">Dry Cleaning - Designer Wear</option>
               <option value="shoes">Shoe Cleaning</option>
               <option value="sofa">Sofa Cleaning</option>

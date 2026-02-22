@@ -5,7 +5,6 @@ import { bgColor, textColor } from '../utils/classNames';
 import { colors } from '../config/colors';
 import MetaTags from '../components/SEO/MetaTags';
 import SchemaMarkup from '../components/SEO/SchemaMarkup';
-import Breadcrumb from '../components/Breadcrumb';
 import { contactInfo } from '../config/contact';
 
 const Pricing = () => {
@@ -71,12 +70,6 @@ const Pricing = () => {
             { name: 'Pricing', path: '/pricing' }
           ]
         }}
-      />
-      <Breadcrumb
-        items={[
-          { name: 'Home', path: '/' },
-          { name: 'Pricing', path: '/pricing' }
-        ]}
       />
       <div className="min-h-screen">
       {/* Hero Section */}
