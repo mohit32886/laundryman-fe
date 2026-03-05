@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getProductPrices } from '../services/productService';
 import { motion } from 'framer-motion';
 import { headingClasses, bodyTextClasses } from '../utils/fonts';
 import { bgColor, textColor } from '../utils/classNames';
@@ -9,41 +10,49 @@ import { contactInfo } from '../config/contact';
 
 const Pricing = () => {
   const [expandedCategory, setExpandedCategory] = useState('men');
+  const [priceMap, setPriceMap] = useState(null);
+  const [priceError, setPriceError] = useState(false);
+
+  useEffect(() => {
+    getProductPrices()
+      .then(setPriceMap)
+      .catch(() => setPriceError(true));
+  }, []);
 
   const pricingData = {
     men: [
-      { item: 'Shirt', regular: 39, silk: 69 },
-      { item: 'White Shirt', regular: 49 },
-      { item: 'T-Shirt', regular: 39 },
-      { item: 'Trouser / Jeans', regular: 45 },
-      { item: 'Kurta', regular: 59, silk: 109 },
-      { item: 'Blazer / Coat', regular: 239 },
-      { item: 'Sherwani', regular: 299 },
-      { item: 'Suit 2pc', regular: 339 },
+      { item: 'Shirt', productId: 'shirt' },
+      { item: 'White Shirt', productId: 'shirt' },
+      { item: 'T-Shirt', productId: 'shirt' },
+      { item: 'Trouser / Jeans', productId: 'jeans' },
+      { item: 'Kurta', productId: 'kurta' },
+      { item: 'Blazer / Coat', productId: 'blazer_coat' },
+      { item: 'Sherwani', productId: 'sherwani' },
+      { item: 'Suit 2pc', productId: 'suit_pc' },
     ],
     women: [
-      { item: 'Kurti / Kameez', regular: 59, silk: 100 },
-      { item: 'Saree', regular: 179 },
-      { item: 'Saree (Work)', regular: 249 },
-      { item: 'Lehenga Heavy', regular: 399 },
-      { item: 'Trouser / Leggings', regular: 49 },
+      { item: 'Kurti / Kameez', productId: 'kurti' },
+      { item: 'Saree', productId: 'saree' },
+      { item: 'Saree (Work)', productId: 'saree' },
+      { item: 'Lehenga Heavy', productId: 'lehenga' },
+      { item: 'Trouser / Leggings', productId: 'pant' },
     ],
     kids: [
-      { item: 'Shirt / T-Shirt', regular: 29 },
-      { item: 'Skirt / Frock', regular: 39 },
-      { item: 'Dress Fancy', regular: 59 },
+      { item: 'Shirt / T-Shirt', productId: 'shirt' },
+      { item: 'Skirt / Frock', productId: 'frock_dress' },
+      { item: 'Dress Fancy', productId: 'dress_fancy' },
     ],
     household: [
-      { item: 'Bedsheet (Single)', regular: 59 },
-      { item: 'Bedsheet (Double)', regular: 99 },
-      { item: 'Blanket (Single)', regular: 249 },
-      { item: 'Blanket (Double)', regular: 349 },
-      { item: 'Carpet (per sq ft)', regular: 29 },
+      { item: 'Bedsheet (Single)', productId: 'bedsheet' },
+      { item: 'Bedsheet (Double)', productId: 'bed_cover' },
+      { item: 'Blanket (Single)', productId: 'blanket' },
+      { item: 'Blanket (Double)', productId: 'blanket' },
+      { item: 'Carpet (per sq ft)', productId: 'carpet_per_sqft' },
     ],
     b2b: [
-      { item: 'Hotel Linen', regular: 'Starting ₹20/pc' },
-      { item: 'Tent House', regular: 'Starting ₹10/pc' },
-      { item: 'Spa & Salon', regular: 'Starting ₹8/pc' },
+      { item: 'Hotel Linen', price: 'Starting ₹20/pc' },
+      { item: 'Tent House', price: 'Starting ₹10/pc' },
+      { item: 'Spa & Salon', price: 'Starting ₹8/pc' },
     ]
   };
 
@@ -100,6 +109,13 @@ const Pricing = () => {
 
       {/* Pricing Categories */}
       <section className="container mx-auto px-4 py-12">
+        {priceError && (
+          <div className="max-w-4xl mx-auto mb-8 p-6 bg-red-50 border border-red-200 rounded-lg text-center">
+            <p className={`${bodyTextClasses()} text-red-600 font-semibold`}>Unable to load pricing at this time.</p>
+            <p className={`${bodyTextClasses()} text-red-500 mt-1`}>Please try again later or contact us for current rates.</p>
+          </div>
+        )}
+        {!priceError && (
         <div className="max-w-4xl mx-auto space-y-4">
           {Object.keys(pricingData).map((category) => (
             <div
@@ -117,7 +133,7 @@ const Pricing = () => {
                   {expandedCategory === category ? '−' : '+'}
                 </span>
               </button>
-              
+
               {expandedCategory === category && (
                 <motion.div
                   initial={{ height: 0 }}
@@ -132,18 +148,19 @@ const Pricing = () => {
                       >
                         <span className={bodyTextClasses()}>{item.item}</span>
                         <div className="flex items-center gap-3">
-                          {typeof item.regular === 'number' && (
+                          {item.price ? (
+                            <span className={`${bodyTextClasses()} font-bold`}>{item.price}</span>
+                          ) : priceMap === null ? (
+                            <span className={`${bodyTextClasses()} text-gray-400`}>Loading...</span>
+                          ) : (
                             <>
                               <span className={`${bodyTextClasses()} line-through text-gray-400`}>
-                                ₹{item.regular}
+                                ₹{priceMap[item.productId]}
                               </span>
                               <span className={`${bodyTextClasses()} font-bold text-green-600`}>
-                                ₹{calculateDiscount(item.regular)}
+                                ₹{calculateDiscount(priceMap[item.productId])}
                               </span>
                             </>
-                          )}
-                          {typeof item.regular === 'string' && (
-                            <span className={`${bodyTextClasses()} font-bold`}>{item.regular}</span>
                           )}
                         </div>
                       </div>
@@ -154,6 +171,7 @@ const Pricing = () => {
             </div>
           ))}
         </div>
+        )}
 
         {/* Pricing Note */}
         <p className={`${bodyTextClasses()} ${textColor('secondary')} text-center mt-8`}>
