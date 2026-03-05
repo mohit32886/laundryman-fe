@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MetaTags from '../../components/SEO/MetaTags';
 import SchemaMarkup from '../../components/SEO/SchemaMarkup';
 import Breadcrumb from '../../components/Breadcrumb';
-import PickupModal from '../../components/PickupModal';
 import WhatsAppBooking from '../../components/WhatsAppBooking';
 import RatingBadge from '../../components/ui/RatingBadge';
 import { heroGradient, bgColor, textColor, hoverBgColor } from '../../utils/classNames';
@@ -27,7 +26,7 @@ const LocationTemplate = ({
   testimonials = [],
   coordinates = { lat: '23.3441', lng: '85.3096' }
 }) => {
-  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false);
+  const navigate = useNavigate();
   const [showWhatsAppBooking, setShowWhatsAppBooking] = useState(false);
 
   const pageTitle = `Best Laundry & Dry Cleaning Service in ${areaName}, Ranchi | Laundryman`;
@@ -99,12 +98,10 @@ const LocationTemplate = ({
                   💬 Quick Quote on WhatsApp
                 </motion.button>
                 <motion.button
-                  onClick={() => setIsPickupModalOpen(true)}
+                  onClick={() => navigate('/schedule-pickup')}
                   className={`bg-white ${textColor('primary')} hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-haspopup="dialog"
-                  aria-expanded={isPickupModalOpen}
                 >
                   🚚 Free Pickup in {areaName} Today
                 </motion.button>
@@ -287,7 +284,7 @@ const LocationTemplate = ({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
-                  onClick={() => setIsPickupModalOpen(true)}
+                  onClick={() => navigate('/schedule-pickup')}
                   className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -313,13 +310,6 @@ const LocationTemplate = ({
         </section>
       </div>
 
-      {/* Modals */}
-      {isPickupModalOpen && (
-        <PickupModal
-          isOpen={isPickupModalOpen}
-          onClose={() => setIsPickupModalOpen(false)}
-        />
-      )}
       {showWhatsAppBooking && (
         <WhatsAppBooking
           isOpen={showWhatsAppBooking}

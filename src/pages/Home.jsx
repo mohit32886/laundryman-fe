@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import TestimonialCarousel from '../components/TestimonialCarousel'
-import PickupModal from '../components/PickupModal'
 import WhatsAppBooking from '../components/WhatsAppBooking'
 import RatingBadge from '../components/ui/RatingBadge'
 import BeforeAfterGallery from '../components/BeforeAfterGallery'
@@ -15,7 +13,7 @@ import { contactInfo } from '../config/contact'
 
 export default function Home() {
   const location = useLocation()
-  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false)
+  const navigate = useNavigate()
   const [showWhatsAppBooking, setShowWhatsAppBooking] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState(null)
 
@@ -29,15 +27,6 @@ export default function Home() {
       }
     }
   }, [location])
-
-  // Listen for pickup modal open event from BeforeAfterGallery
-  useEffect(() => {
-    const handleOpenPickupModal = () => {
-      setIsPickupModalOpen(true)
-    }
-    window.addEventListener('openPickupModal', handleOpenPickupModal)
-    return () => window.removeEventListener('openPickupModal', handleOpenPickupModal)
-  }, [])
 
   // FAQ data for schema markup
   const faqs = [
@@ -125,7 +114,7 @@ export default function Home() {
                 💬 Quick Quote on WhatsApp
               </motion.button>
               <motion.button 
-                onClick={() => setIsPickupModalOpen(true)}
+                onClick={() => navigate('/schedule-pickup')}
                 className={`bg-white ${textColor('primary')} hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -777,11 +766,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pickup Modal */}
-      <PickupModal 
-        isOpen={isPickupModalOpen} 
-        onClose={() => setIsPickupModalOpen(false)} 
-      />
 
       {/* WhatsApp Booking Modal */}
       <WhatsAppBooking 

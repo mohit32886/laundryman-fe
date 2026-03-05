@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { heroGradient, textColor } from '../utils/classNames'
 import { colors } from '../config/colors'
-import PickupModal from '../components/PickupModal'
 import MetaTags from '../components/SEO/MetaTags'
 import SchemaMarkup from '../components/SEO/SchemaMarkup'
 import { contactInfo } from '../config/contact'
 
 export default function Services() {
   const location = useLocation()
-  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (location.hash) {
@@ -302,7 +301,7 @@ export default function Services() {
               Chat On WhatsApp
             </button>
             <button 
-              onClick={() => setIsPickupModalOpen(true)}
+              onClick={() => navigate('/schedule-pickup')}
               className="bg-white text-[#1879a2] hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
             >
               Book Laundryman
@@ -311,11 +310,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Pickup Modal */}
-      <PickupModal 
-        isOpen={isPickupModalOpen} 
-        onClose={() => setIsPickupModalOpen(false)} 
-      />
     </div>
     </>
   )

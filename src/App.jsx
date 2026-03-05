@@ -11,6 +11,7 @@ import ContactUs from './pages/ContactUs'
 import AboutUs from './pages/AboutUs'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
+import SchedulePickup from './pages/SchedulePickup'
 import Harmu from './pages/locations/Harmu'
 import Hinoo from './pages/locations/Hinoo'
 import Doranda from './pages/locations/Doranda'
@@ -33,6 +34,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/schedule-pickup" element={<SchedulePickup />} />
           <Route path="/locations/harmu" element={<Harmu />} />
           <Route path="/locations/hinoo" element={<Hinoo />} />
           <Route path="/locations/doranda" element={<Doranda />} />

@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { bgColor, textColor, borderColor, accentColor } from '../utils/classNames';
 import { headingClasses, bodyTextClasses } from '../utils/fonts';
-import PickupModal from './PickupModal';
 
 const PricingCalculator = () => {
   const [serviceType, setServiceType] = useState('laundry');
   const [quantity, setQuantity] = useState(5);
   const [deliverySpeed, setDeliverySpeed] = useState('regular');
-  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Pricing data structure
   const prices = {
@@ -156,7 +156,7 @@ const PricingCalculator = () => {
           <div className="mt-6 space-y-3">
             <button
               className={`w-full ${bgColor('primary')} text-white py-4 rounded-lg ${bodyTextClasses()} font-bold text-lg hover:opacity-90 transition-opacity`}
-              onClick={() => setIsPickupModalOpen(true)}
+              onClick={() => navigate('/schedule-pickup')}
             >
               Schedule Pickup Now
             </button>
@@ -170,11 +170,6 @@ const PricingCalculator = () => {
         </div>
       </motion.section>
 
-      {/* Pickup Modal */}
-      <PickupModal 
-        isOpen={isPickupModalOpen} 
-        onClose={() => setIsPickupModalOpen(false)} 
-      />
     </>
   );
 };

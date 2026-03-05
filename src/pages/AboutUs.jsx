@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import PickupModal from '../components/PickupModal'
 import MetaTags from '../components/SEO/MetaTags'
 import SchemaMarkup from '../components/SEO/SchemaMarkup'
 import Breadcrumb from '../components/Breadcrumb'
@@ -8,7 +7,7 @@ import { bgColor, textColor, hoverTextColor } from '../utils/classNames'
 import { contactInfo } from '../config/contact'
 
 export default function AboutUs() {
-  const [isPickupModalOpen, setIsPickupModalOpen] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -339,7 +338,7 @@ export default function AboutUs() {
               Chat on WhatsApp
             </motion.button>
             <motion.button 
-              onClick={() => setIsPickupModalOpen(true)}
+              onClick={() => navigate('/schedule-pickup')}
               className="bg-white text-[#1879a2] hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -350,11 +349,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Pickup Modal */}
-      <PickupModal 
-        isOpen={isPickupModalOpen} 
-        onClose={() => setIsPickupModalOpen(false)} 
-      />
     </div>
     </>
   )
