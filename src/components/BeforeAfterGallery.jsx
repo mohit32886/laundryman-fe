@@ -184,7 +184,7 @@ const BeforeAfterGallery = () => {
               window.dispatchEvent(new CustomEvent('openPickupModal'));
             }}
           >
-            Schedule Free Pickup →
+            Book Laundryman →
           </Button>
         </div>
       </div>

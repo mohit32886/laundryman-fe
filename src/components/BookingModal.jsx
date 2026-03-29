@@ -34,12 +34,13 @@ const BookingModal = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | null
   const [errorMessage, setErrorMessage] = useState('')
+  const [touched, setTouched] = useState({ name: false, phone: false, address: false })
 
   const services = [
-    { id: 'laundry', icon: '🧺', name: 'Laundry', price: 'From ₹60/kg' },
-    { id: 'dry-clean', icon: '👔', name: 'Dry Clean', price: 'From ₹150/pc' },
-    { id: 'shoes', icon: '👟', name: 'Shoes', price: 'From ₹300/pair' },
-    { id: 'other', icon: '✨', name: 'Other', price: 'Custom quote' }
+    { id: 'laundry', icon: '🧺', name: 'Laundry' },
+    { id: 'dry-clean', icon: '👔', name: 'Dry Clean' },
+    { id: 'shoes', icon: '👟', name: 'Shoes' },
+    { id: 'other', icon: '✨', name: 'Other' }
   ]
 
   const timeSlots = [
@@ -83,6 +84,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   const handleStartFresh = () => {
     formStateManager.clear()
     setShowResumePrompt(false)
+    setTouched({ name: false, phone: false, address: false })
     setFormData({
       service: '',
       name: '',
@@ -167,7 +169,8 @@ const BookingModal = ({ isOpen, onClose }) => {
       
       setSubmitStatus('success')
       formStateManager.clear() // Clear saved data after successful submission
-      
+      setTouched({ name: false, phone: false, address: false })
+
       // Reset form
       setFormData({
         service: '',
@@ -232,6 +235,41 @@ const BookingModal = ({ isOpen, onClose }) => {
       'other': 'mixed'
     }
     return serviceMap[serviceId] || 'mixed'
+  }
+
+  // Inline validation helpers
+  const getFieldError = (field) => {
+    if (!touched[field]) return ''
+    switch (field) {
+      case 'name':
+        if (!formData.name.trim()) return 'Name is required'
+        if (formData.name.trim().length < 2) return 'Name must be at least 2 characters'
+        return ''
+      case 'phone': {
+        if (!formData.phone.trim()) return 'Phone number is required'
+        const clean = formData.phone.replace(/\D/g, '')
+        if (!PHONE_REGEX.test(clean)) return 'Enter a valid 10-digit number starting with 6-9'
+        return ''
+      }
+      case 'address':
+        if (!formData.address.trim()) return 'Address is required'
+        if (formData.address.trim().length < 5) return 'Address must be at least 5 characters'
+        return ''
+      default:
+        return ''
+    }
+  }
+
+  const isStep2Valid = () => {
+    const nameOk = formData.name.trim().length >= 2
+    const phoneOk = PHONE_REGEX.test(formData.phone.replace(/\D/g, ''))
+    const addressOk = formData.address.trim().length >= 5
+    const timeOk = !!formData.pickupTime
+    return nameOk && phoneOk && addressOk && timeOk
+  }
+
+  const handleBlur = (field) => {
+    setTouched(prev => ({ ...prev, [field]: true }))
   }
 
   if (!isOpen) return null
@@ -304,17 +342,15 @@ const BookingModal = ({ isOpen, onClose }) => {
                           className={`
                             p-6 rounded-xl border-2 transition-all
                             ${formData.service === service.id
-                              ? `${borderColor('primary')} bg-[${colors.primary.DEFAULT}]/5`
-                              : `border-gray-200 hover:${borderColor('primary')}/50`
+                              ? `${borderColor('primary')}`
+                              : `border-gray-200 hover:border-gray-400`
                             }
                           `}
+                          style={formData.service === service.id ? { backgroundColor: `${colors.primary.DEFAULT}10` } : {}}
                         >
                           <div className="text-5xl mb-3">{service.icon}</div>
-                          <div className={`${bodyTextClasses()} ${fontWeightClass('bold')} mb-1`}>
+                          <div className={`${bodyTextClasses()} ${fontWeightClass('bold')}`}>
                             {service.name}
-                          </div>
-                          <div className={`${bodyTextClasses('sm')} ${textColor('secondary')}`}>
-                            {service.price}
                           </div>
                         </motion.button>
                       ))}
@@ -353,11 +389,16 @@ const BookingModal = ({ isOpen, onClose }) => {
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
+                          onBlur={() => handleBlur('name')}
+                          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none text-base ${getFieldError('name') ? 'border-red-400' : 'border-gray-300'}`}
+                          style={{ '--tw-ring-color': colors.primary.DEFAULT }}
                           placeholder="Enter your name"
                           required
                           maxLength={MAX_NAME_LENGTH}
                         />
+                        {getFieldError('name') && (
+                          <p className="text-red-500 text-sm mt-1">{getFieldError('name')}</p>
+                        )}
                       </div>
 
                       <div>
@@ -368,12 +409,16 @@ const BookingModal = ({ isOpen, onClose }) => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onBlur={() => handleBlur('phone')}
                           pattern="[0-9]{10}"
-                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
+                          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none text-base ${getFieldError('phone') ? 'border-red-400' : 'border-gray-300'}`}
                           placeholder="+91 Phone Number"
                           required
                           maxLength={10}
                         />
+                        {getFieldError('phone') && (
+                          <p className="text-red-500 text-sm mt-1">{getFieldError('phone')}</p>
+                        )}
                       </div>
 
                       <div>
@@ -384,11 +429,15 @@ const BookingModal = ({ isOpen, onClose }) => {
                           type="text"
                           value={formData.address}
                           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                          className={`w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:${borderColor('primary')} focus:outline-none text-base`}
+                          onBlur={() => handleBlur('address')}
+                          className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none text-base ${getFieldError('address') ? 'border-red-400' : 'border-gray-300'}`}
                           placeholder="Start typing your address..."
                           required
                           maxLength={MAX_ADDRESS_LENGTH}
                         />
+                        {getFieldError('address') && (
+                          <p className="text-red-500 text-sm mt-1">{getFieldError('address')}</p>
+                        )}
                       </div>
 
                       <div>
@@ -403,10 +452,11 @@ const BookingModal = ({ isOpen, onClose }) => {
                               className={`
                                 p-4 rounded-lg border-2 text-left transition-all
                                 ${formData.pickupTime === slot.id
-                                  ? `${borderColor('primary')} bg-[${colors.primary.DEFAULT}]/5`
-                                  : `border-gray-200 hover:${borderColor('primary')}/50`
+                                  ? `${borderColor('primary')}`
+                                  : `border-gray-200 hover:border-gray-400`
                                 }
                               `}
+                              style={formData.pickupTime === slot.id ? { backgroundColor: `${colors.primary.DEFAULT}10` } : {}}
                             >
                               <div className={`${bodyTextClasses()} ${fontWeightClass('bold')}`}>{slot.label}</div>
                               <div className={`${bodyTextClasses('sm')} ${textColor('secondary')}`}>
@@ -426,7 +476,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                         variant="primary"
                         onClick={nextStep}
                         className="flex-1"
-                        disabled={!formData.name || !formData.phone || !formData.address || !formData.pickupTime}
+                        disabled={!isStep2Valid()}
                       >
                         Continue →
                       </Button>
@@ -465,13 +515,6 @@ const BookingModal = ({ isOpen, onClose }) => {
                           {formData.address}
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className={textColor('secondary')}>Estimated Cost:</span>
-                        <span className={`${bodyTextClasses()} ${fontWeightClass('bold')}`}>
-                          {services.find(s => s.id === formData.service)?.price}
-                        </span>
-                      </div>
-
                       <div className="bg-gradient-to-r from-orange-100 to-orange-50 rounded-lg p-4 mt-4">
                         <p className={`${bodyTextClasses()} ${fontWeightClass('bold')} text-orange-600`}>
                           🎉 You'll get 20% off your first order!

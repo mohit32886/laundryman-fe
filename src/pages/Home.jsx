@@ -109,7 +109,7 @@ export default function Home() {
               <span className="text-2xl font-bold">Flat 20% Off On 1st Order</span>
             </motion.div>
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -131,7 +131,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Schedule Free Pickup
+                Book Laundryman
               </motion.button>
             </motion.div>
             <motion.div

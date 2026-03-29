@@ -368,7 +368,7 @@ export default function Services() {
               onClick={() => setIsPickupModalOpen(true)}
               className="bg-white text-[#1879a2] hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
             >
-              Schedule Free Pickup
+              Book Laundryman
             </button>
           </div>
         </div>

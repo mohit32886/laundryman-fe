@@ -147,7 +147,7 @@ export default function Footer() {
               {/* Social Media */}
               <div className="flex space-x-4 pt-2">
               <a 
-                href="https://www.facebook.com/laundryman" 
+                href="#"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -169,7 +169,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a 
-                href="https://www.twitter.com/laundryman" 
+                href="#"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -180,7 +180,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a 
-                href="https://www.linkedin.com/company/laundryman" 
+                href="#"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"

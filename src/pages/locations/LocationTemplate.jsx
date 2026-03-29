@@ -292,7 +292,7 @@ const LocationTemplate = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Schedule Free Pickup
+                  Book Laundryman
                 </motion.button>
                 <motion.a
                   href={contactInfo.getWhatsAppUrl()}
