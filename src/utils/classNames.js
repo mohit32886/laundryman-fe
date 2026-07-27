@@ -4,7 +4,6 @@
  * Changing tokens in theme.js dynamically updates all generated classes.
  */
 
-import { colors } from '../config/colors'
 import { themeConfig } from '../config/theme'
 
 export const heroGradient = () => {
@@ -25,99 +24,92 @@ export const glassCardClass = (variant = 'light') => {
 
 export const bgColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.DEFAULT,
-    primaryLight: colors.primary.light,
-    primaryMedium: colors.primary.medium,
-    primaryDark: colors.primary.dark,
-    bgLight: colors.bg.light,
-    bgLighter: colors.bg.lighter,
-    secondary: colors.secondary.DEFAULT,
-    whatsapp: colors.whatsapp.DEFAULT,
-    whatsappHover: colors.whatsapp.hover,
+    primary: 'bg-cyan-700',
+    primaryLight: 'bg-cyan-600',
+    primaryMedium: 'bg-cyan-600',
+    primaryDark: 'bg-cyan-800',
+    bgLight: 'bg-cyan-50',
+    bgLighter: 'bg-cyan-100',
+    secondary: 'bg-emerald-600',
+    whatsapp: 'bg-emerald-500',
+    whatsappHover: 'bg-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `bg-[${color}]`
+  return colorMap[colorKey] || `bg-[${colorKey}]`
 }
 
 export const textColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.DEFAULT,
-    primaryLight: colors.primary.light,
-    primaryMedium: colors.primary.medium,
-    primaryDark: colors.primary.dark,
-    bgLight: colors.bg.light,
-    bgLighter: colors.bg.lighter,
-    secondary: colors.secondary.DEFAULT,
-    whatsapp: colors.whatsapp.DEFAULT,
-    whatsappHover: colors.whatsapp.hover,
+    primary: 'text-cyan-800',
+    primaryLight: 'text-cyan-600',
+    primaryMedium: 'text-cyan-600',
+    primaryDark: 'text-cyan-900',
+    bgLight: 'text-cyan-50',
+    bgLighter: 'text-cyan-100',
+    secondary: 'text-emerald-600',
+    whatsapp: 'text-emerald-500',
+    whatsappHover: 'text-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `text-[${color}]`
+  return colorMap[colorKey] || `text-[${colorKey}]`
 }
 
 export const borderColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.DEFAULT,
-    primaryLight: colors.primary.light,
-    primaryMedium: colors.primary.medium,
-    primaryDark: colors.primary.dark,
-    bgLight: colors.bg.light,
-    bgLighter: colors.bg.lighter,
-    secondary: colors.secondary.DEFAULT,
-    whatsapp: colors.whatsapp.DEFAULT,
-    whatsappHover: colors.whatsapp.hover,
+    primary: 'border-cyan-700',
+    primaryLight: 'border-cyan-600',
+    primaryMedium: 'border-cyan-600',
+    primaryDark: 'border-cyan-800',
+    bgLight: 'border-cyan-50',
+    bgLighter: 'border-cyan-100',
+    secondary: 'border-emerald-600',
+    whatsapp: 'border-emerald-500',
+    whatsappHover: 'border-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `border-[${color}]`
+  return colorMap[colorKey] || `border-[${colorKey}]`
 }
 
 export const hoverBgColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.dark,
-    primaryLight: colors.primary.DEFAULT,
-    primaryMedium: colors.primary.DEFAULT,
-    primaryDark: colors.primary.darker,
-    bgLight: colors.bg.lighter,
-    secondary: colors.secondary.dark,
-    whatsapp: colors.whatsapp.hover,
+    primary: 'hover:bg-cyan-800',
+    primaryLight: 'hover:bg-cyan-700',
+    primaryMedium: 'hover:bg-cyan-700',
+    primaryDark: 'hover:bg-cyan-900',
+    bgLight: 'hover:bg-cyan-100',
+    secondary: 'hover:bg-emerald-700',
+    whatsapp: 'hover:bg-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `hover:bg-[${color}]`
+  return colorMap[colorKey] || `hover:bg-[${colorKey}]`
 }
 
 export const hoverTextColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.dark,
-    primaryLight: colors.primary.DEFAULT,
-    secondary: colors.secondary.dark,
+    primary: 'hover:text-cyan-900',
+    primaryLight: 'hover:text-cyan-700',
+    secondary: 'hover:text-emerald-700',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `hover:text-[${color}]`
+  return colorMap[colorKey] || `hover:text-[${colorKey}]`
 }
 
 export const focusRingColor = (colorKey = 'primary') => {
   const colorMap = {
-    primary: colors.primary.DEFAULT,
-    primaryLight: colors.primary.light,
-    secondary: colors.secondary.DEFAULT,
+    primary: 'focus:ring-2 focus:ring-cyan-700',
+    primaryLight: 'focus:ring-2 focus:ring-cyan-600',
+    secondary: 'focus:ring-2 focus:ring-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `focus:ring-2 focus:ring-[${color}]`
+  return colorMap[colorKey] || `focus:ring-2 focus:ring-[${colorKey}]`
 }
 
 export const accentColor = (colorKey = 'primary') => {
   const colorMap = {
-    primary: colors.primary.DEFAULT,
-    primaryLight: colors.primary.light,
-    secondary: colors.secondary.DEFAULT,
+    primary: 'accent-cyan-700',
+    primaryLight: 'accent-cyan-600',
+    secondary: 'accent-emerald-600',
   }
   
-  const color = colorMap[colorKey] || colorKey
-  return `accent-[${color}]`
+  return colorMap[colorKey] || `accent-[${colorKey}]`
 }

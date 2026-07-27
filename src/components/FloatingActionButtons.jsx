@@ -40,7 +40,7 @@ export default function FloatingActionButtons() {
       {/* Call Button */}
       <motion.button
         onClick={handleCallClick}
-        className={`${bgColor('primary')} ${hoverBgColor('primary')} text-white rounded-full p-4 shadow-lg hover:shadow-xl flex items-center justify-center w-14 h-14`}
+        className="bg-cyan-700 hover:bg-cyan-800 text-white rounded-full p-4 shadow-lg hover:shadow-xl flex items-center justify-center w-14 h-14"
         aria-label="Call us"
         title="Call us"
         whileHover={{ scale: 1.1 }}

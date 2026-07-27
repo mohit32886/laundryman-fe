@@ -241,7 +241,7 @@ export default function GetFranchise() {
                     transition={{ duration: 0.3, delay: idx * 0.1 }}
                   >
                     <p className="text-gray-600 mb-1">{detail.label}</p>
-                    <p className={detail.bold ? 'text-2xl font-bold text-[#1879a2]' : 'text-xl font-semibold'}>{detail.value}</p>
+                    <p className={detail.bold ? `text-2xl font-bold ${textColor('primary')}` : 'text-xl font-semibold'}>{detail.value}</p>
                   </motion.div>
                 ))}
               </div>
@@ -287,7 +287,7 @@ export default function GetFranchise() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: idx * 0.1 }}
                 >
-                  <span className={`${idx === 0 ? 'text-[#1879a2]' : 'text-blue-600'} mr-3 text-xl font-bold`}>{idx + 1}.</span>
+                  <span className={`${textColor('primary')} mr-3 text-xl font-bold`}>{idx + 1}.</span>
                   <span>{req}</span>
                 </motion.li>
               ))}

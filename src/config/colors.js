@@ -17,12 +17,12 @@
 export const colors = {
   // Primary Brand Colors (from logo)
   primary: {
-    DEFAULT: '#1879a2',      // Main brand color
-    light: '#24bcee',        // Lighter cyan-blue
-    medium: '#35a0d9',       // Medium blue
-    dark: '#145e7d',         // Darker blue for hover states
-    darker: '#0f4358',       // Even darker variant
-    darkest: '#0a2833',      // Darkest variant
+    DEFAULT: '#0e7490',      // Main brand color (Deep Rich Cyan)
+    light: '#0891b2',        // Cyan-blue accent
+    medium: '#06b6d4',       // Medium cyan
+    dark: '#155e75',         // Darker cyan for hover states
+    darker: '#164e63',       // Even darker variant
+    darkest: '#083344',      // Darkest variant
   },
   
   // Background variants

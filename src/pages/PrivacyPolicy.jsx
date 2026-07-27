@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
                 <p className="text-gray-700 mb-2">Ranchi, Jharkhand, India</p>
                 <p className="text-gray-700 mb-2">
                   <strong>Phone:</strong>{' '}
-                  <a href={contactInfo.getTelUrl()} className="text-[#1879a2] hover:text-[#145e7d]">
+                  <a href={contactInfo.getTelUrl()} className={`${textColor('primary')} hover:underline`}>
                     {contactInfo.display.phone}
                   </a>
                 </p>
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
                     href="https://www.laundryman.pro" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-[#1879a2] hover:text-[#145e7d]"
+                    className={`${textColor('primary')} hover:underline`}
                   >
                     https://www.laundryman.pro
                   </a>

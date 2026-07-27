@@ -208,13 +208,13 @@ export default function TermsAndConditions() {
                 <p className="text-gray-700 mb-2">01, Opp. Bharat Petroleum, Lalgutwa, Daladili Chowk, Ranchi, Jharkhand 835302</p>
                 <p className="text-gray-700 mb-2">
                   <strong>Phone:</strong>{' '}
-                  <a href={contactInfo.getTelUrl()} className="text-[#1879a2] hover:text-[#145e7d]">
+                  <a href={contactInfo.getTelUrl()} className={`${textColor('primary')} hover:underline`}>
                     {contactInfo.display.phone}
                   </a>
                 </p>
                 <p className="text-gray-700 mb-2">
                   <strong>Email:</strong>{' '}
-                  <a href="mailto:whitebasketpvtltd@gmail.com" className="text-[#1879a2] hover:text-[#145e7d]">
+                  <a href="mailto:whitebasketpvtltd@gmail.com" className={`${textColor('primary')} hover:underline`}>
                     whitebasketpvtltd@gmail.com
                   </a>
                 </p>
@@ -224,7 +224,7 @@ export default function TermsAndConditions() {
                     href="https://www.laundryman.pro" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-[#1879a2] hover:text-[#145e7d]"
+                    className={`${textColor('primary')} hover:underline`}
                   >
                     https://www.laundryman.pro
                   </a>
@@ -233,7 +233,7 @@ export default function TermsAndConditions() {
             </div>
 
             {/* Acknowledgment */}
-            <div className="mt-8 p-6 bg-[#1879a2]/10 rounded-lg">
+            <div className="mt-8 p-6 bg-cyan-50 border border-cyan-100 rounded-lg">
               <p className="text-gray-700 font-medium">
                 By using Laundryman's services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
               </p>

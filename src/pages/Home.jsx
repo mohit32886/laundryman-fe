@@ -135,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* Experience Trust Banner */}
-      <section className={`${bgColor('primary')} text-white py-8`}>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-cyan-950 text-white py-10 border-t border-b border-cyan-900/40 shadow-inner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center"
@@ -206,7 +206,7 @@ export default function Home() {
               <div className="bg-white rounded-xl shadow-xl p-8 md:p-12 max-w-5xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                   <div className="text-center">
-                    <div className={`${bgColor('primary')} text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                    <div className="bg-cyan-700 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md shadow-cyan-900/20">
                       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
@@ -215,7 +215,7 @@ export default function Home() {
                     <p className="text-gray-600 text-sm">Free pickup from your doorstep</p>
                   </div>
                   <div className="text-center">
-                    <div className={`${bgColor('primary')} text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                    <div className="bg-cyan-700 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md shadow-cyan-900/20">
                       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {/* T-shirt */}
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 3l-3 3v2h4v-2h10v2h4V6l-3-3h-3l-2 2h-2l-2-2H6z" />
@@ -234,7 +234,7 @@ export default function Home() {
                     <p className="text-gray-600 text-sm">Expert care with premium solutions</p>
                   </div>
                   <div className="text-center">
-                    <div className={`${bgColor('primary')} text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                    <div className="bg-cyan-700 text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md shadow-cyan-900/20">
                       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                       </svg>
@@ -505,13 +505,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Before/After Gallery */}
-      <BeforeAfterGallery />
+      {/* Before/After Gallery — Hidden per client directive */}
+      {/* <BeforeAfterGallery /> */}
 
       {/* Delivery Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">BEST LAUNDRY & DRY CLEAN SERVICE, NOW WITH FREE HOME DELIVERY</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 text-center mb-4 tracking-tight">BEST LAUNDRY & DRY CLEAN SERVICE, NOW WITH FREE HOME DELIVERY</h2>
           <p className="text-center text-gray-600 mb-12">Laundryman stores provide free home pickup and delivery at a time of your convenience. We also provide express delivery service</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

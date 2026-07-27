@@ -268,7 +268,7 @@ const LocationTemplate = ({
         )}
 
         {/* CTA Section */}
-        <section className={`${bgColor('primary')} text-white py-16`}>
+        <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-cyan-950 text-white py-16 border-t border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

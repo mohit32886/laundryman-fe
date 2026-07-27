@@ -312,7 +312,7 @@ function MethodOption({ selected, onSelect, title, subtitle }) {
     >
       <div className="flex items-center justify-between">
         <span className="font-semibold text-gray-900 text-sm">{title}</span>
-        <input type="radio" checked={selected} onChange={() => {}} className="accent-[#1879a2]" />
+        <input type="radio" checked={selected} onChange={() => {}} className="accent-cyan-600" />
       </div>
       <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
     </button>
