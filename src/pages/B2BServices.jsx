@@ -201,15 +201,11 @@ export default function B2BServices() {
           { name: 'B2B Services', path: '/b2b-services' }
         ]}
       />
-      <div className="bg-white">
+      <div className="bg-slate-50 min-h-screen">
       {/* Hero Section */}
-      <section className={`${heroGradient()} text-white py-20 relative overflow-hidden`}>
+      <section className="theme-hero-bg text-white py-24 md:py-32 relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-48 h-48 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
@@ -218,22 +214,22 @@ export default function B2BServices() {
             transition={{ duration: 0.6 }}
           >
             <motion.div 
-              className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center glass-panel-dark text-cyan-300 border border-cyan-500/30 rounded-full px-4 py-2 mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-              <span className="text-sm font-medium">Trusted by 50+ Businesses in Ranchi</span>
+              <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full mr-2 animate-ping"></span>
+              <span className="text-sm font-semibold">Trusted by 50+ Hotels, Hospitals & Businesses in Ranchi</span>
             </motion.div>
             
             <motion.h1 
-              className="text-4xl md:text-6xl font-bold mb-6"
+              className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              B2B <span className="text-yellow-300">Laundry</span> Services
+              B2B & Corporate <span className="theme-title-gradient">LAUNDRY SERVICES</span>
             </motion.h1>
             
             <motion.p 
@@ -274,9 +270,9 @@ export default function B2BServices() {
               </motion.button>
               <motion.button 
                 onClick={() => setIsB2BQuoteModalOpen(true)}
-                className="bg-white text-[#1879a2] hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-white hover:bg-slate-100 text-slate-900 px-8 py-3.5 rounded-xl font-bold shadow-md transition-all"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
               >
                 Request a Quote
               </motion.button>
@@ -563,10 +559,10 @@ export default function B2BServices() {
                 <motion.button
                   key={tab.id}
                   onClick={() => setActivePricingTab(tab.id)}
-                  className={`flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  className={`flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
                     activePricingTab === tab.id
-                      ? 'bg-gradient-to-r from-[#1879a2] to-[#24bcee] text-white shadow-lg'
-                      : 'text-gray-600 hover:text-[#1879a2]'
+                      ? 'theme-cta-btn text-white shadow-lg'
+                      : 'text-slate-600 hover:text-cyan-600'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -734,20 +730,20 @@ export default function B2BServices() {
 
               {/* Bulk Discount Info */}
               <motion.div 
-                className="bg-gradient-to-br from-[#1879a2] to-[#24bcee] text-white rounded-xl p-6 shadow-lg"
+                className="glass-panel-dark text-white rounded-2xl p-8 shadow-xl border border-cyan-500/20"
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-6">
-                  <div className="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-cyan-500/20 w-12 h-12 rounded-full flex items-center justify-center mr-4 border border-cyan-500/30">
+                    <svg className="w-6 h-6 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold">Bulk Discounts</h3>
+                  <h3 className="text-xl font-extrabold text-white">Bulk Discounts</h3>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-white/90">Special pricing available for high-volume orders:</p>
-                  <ul className="space-y-2">
+                  <p className="text-slate-300 font-light">Special pricing available for high-volume orders:</p>
+                  <ul className="space-y-2 text-slate-200">
                     {[
                       '10-20% off on monthly contracts',
                       'Custom pricing for 500+ items/month',
@@ -755,14 +751,14 @@ export default function B2BServices() {
                       'Priority processing'
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-center">
-                        <span className="text-yellow-300 mr-2">★</span>
+                        <span className="text-cyan-400 mr-2">★</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <motion.button 
                     onClick={() => setIsB2BQuoteModalOpen(true)}
-                    className="mt-4 w-full bg-white text-[#1879a2] hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors"
+                    className="mt-6 w-full theme-cta-btn text-white px-6 py-3.5 rounded-xl font-bold shadow-lg transition-all"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -1003,17 +999,17 @@ export default function B2BServices() {
               </motion.button>
               <motion.button 
                 onClick={() => setIsB2BQuoteModalOpen(true)}
-                className="bg-white text-[#1879a2] hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-white hover:bg-slate-100 text-slate-900 px-8 py-3.5 rounded-xl font-bold shadow-md transition-all"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
               >
                 Request a Quote
               </motion.button>
               <Link to="/pricing">
                 <motion.button 
-                  className="bg-[#24bcee] hover:bg-[#35a0d9] text-white px-8 py-3 rounded-lg font-semibold"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="theme-cta-btn text-white px-8 py-3.5 rounded-xl font-bold shadow-md transition-all"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
                 >
                   View All Pricing
                 </motion.button>

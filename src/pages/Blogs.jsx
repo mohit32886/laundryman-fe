@@ -110,12 +110,16 @@ export default function Blogs() {
   const categories = ['All', 'Laundry Tips', 'Educational', 'Fabric Care', 'Sustainability', 'Seasonal Care', 'Shoe Care']
 
   return (
-    <div className="bg-white">
+    <div className="bg-slate-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Blogs</h1>
-          <p className="text-xl">Tips, guides, and insights about laundry and dry cleaning</p>
+      <section className="relative overflow-hidden theme-hero-bg text-white py-20 md:py-28">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-flex items-center gap-2 glass-panel-dark border border-cyan-500/30 text-cyan-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            📚 Expert Fabric Care & Laundry Guides
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Laundry & Care <span className="theme-title-gradient">BLOGS</span></h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light">Tips, guides, and insights about luxury fabric care and dry cleaning in Ranchi</p>
         </div>
       </section>
 
@@ -127,10 +131,10 @@ export default function Blogs() {
               <button
                 key={idx}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
+                className={`px-6 py-2 rounded-full font-medium transition-all ${
                   selectedCategory === category
-                    ? 'bg-[#1879a2] text-white'
-                    : 'bg-white text-gray-700 hover:bg-[#e6f4f8] border border-gray-200'
+                    ? 'theme-cta-btn text-white shadow-md'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
                 {category}
@@ -143,9 +147,9 @@ export default function Blogs() {
       {/* Featured Post */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-8">Featured Post</h2>
+          <h2 className="text-3xl font-extrabold mb-8 text-slate-900">Featured Post</h2>
           {(selectedCategory === 'All' || blogPosts[0].category === selectedCategory) && (
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="glass-card rounded-2xl shadow-xl overflow-hidden border border-slate-200/80">
               <div className="md:flex">
                 <div className="md:w-1/2">
                   <img
@@ -155,17 +159,17 @@ export default function Blogs() {
                   />
                 </div>
                 <div className="md:w-1/2 p-8">
-                  <span className="bg-[#e6f4f8] text-[#1879a2] px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-cyan-50 text-cyan-700 border border-cyan-200/80 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                     {blogPosts[0].category}
                   </span>
-                  <h3 className="text-3xl font-bold mt-4 mb-4">{blogPosts[0].title}</h3>
-                  <div className="flex items-center text-gray-500 text-sm mb-4">
+                  <h3 className="text-3xl font-extrabold mt-4 mb-4 text-slate-900">{blogPosts[0].title}</h3>
+                  <div className="flex items-center text-slate-500 text-sm mb-4">
                     <span>{blogPosts[0].date}</span>
                   </div>
-                  <p className="text-gray-600 mb-4">{blogPosts[0].excerpt}</p>
+                  <p className="text-slate-600 mb-6 font-light">{blogPosts[0].excerpt}</p>
                   <button 
                     onClick={() => handleReadMore(blogPosts[0])}
-                    className="bg-[#1879a2] text-white px-6 py-2 rounded-lg hover:bg-[#145e7d] transition-colors"
+                    className="theme-cta-btn px-6 py-2.5 rounded-xl font-bold shadow-md"
                   >
                     Read More
                   </button>
@@ -177,15 +181,15 @@ export default function Blogs() {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-8">Latest Posts</h2>
+          <h2 className="text-3xl font-extrabold mb-8 text-slate-900">Latest Posts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts
               .slice(1)
               .filter(post => selectedCategory === 'All' || post.category === selectedCategory)
               .map((post) => (
-              <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+              <div key={post.id} className="glass-card rounded-2xl shadow-md overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all flex flex-col h-full">
                 <img
                   src={post.image}
                   alt={post.title}
@@ -193,17 +197,17 @@ export default function Blogs() {
                 />
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+                    <span className="bg-cyan-50 text-cyan-700 border border-cyan-200/80 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                       {post.category}
                     </span>
-                    <span className="text-gray-500 text-sm">{post.date}</span>
+                    <span className="text-slate-400 text-sm font-light">{post.date}</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <div className="mt-auto">
+                  <h3 className="text-xl font-bold mb-3 text-slate-900">{post.title}</h3>
+                  <p className="text-slate-600 mb-4 text-sm font-light leading-relaxed">{post.excerpt}</p>
+                  <div className="mt-auto pt-4 border-t border-slate-100">
                   <button 
                       onClick={() => handleReadMore(post)}
-                      className="text-[#1879a2] font-semibold hover:text-[#145e7d] transition-colors"
+                      className="text-cyan-600 font-bold hover:text-cyan-700 transition-colors"
                   >
                     Read More →
                   </button>

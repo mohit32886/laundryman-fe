@@ -10,14 +10,9 @@ import Button from './ui/Button'
 const ResumeBookingPrompt = ({ savedData, onResume, onStartFresh, onDismiss }) => {
   if (!savedData) return null
 
-  const serviceNames = {
-    laundry: 'Laundry',
-    'dry-clean': 'Dry Clean',
-    shoes: 'Shoe Cleaning',
-    other: 'Service'
-  }
-
-  const serviceName = serviceNames[savedData.service] || 'Service'
+  const itemCount = savedData.cart
+    ? Object.values(savedData.cart).reduce((sum, v) => sum + (v.quantity || 0), 0)
+    : 0
 
   return (
     <AnimatePresence>
@@ -41,7 +36,7 @@ const ResumeBookingPrompt = ({ savedData, onResume, onStartFresh, onDismiss }) =
           Resume Your Booking?
         </h3>
         <p className={`${bodyTextClasses()} text-gray-600 mb-4`}>
-          You have an incomplete booking for <strong>{serviceName}</strong>. Would you like to continue where you left off?
+          You have an incomplete booking with <strong>{itemCount} item{itemCount !== 1 ? 's' : ''}</strong> in your cart. Continue where you left off?
         </p>
         
         <div className="flex gap-3">

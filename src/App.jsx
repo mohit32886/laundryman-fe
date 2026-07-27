@@ -17,6 +17,17 @@ import Hinoo from './pages/locations/Hinoo'
 import Doranda from './pages/locations/Doranda'
 import Lalpur from './pages/locations/Lalpur'
 import Kantatoli from './pages/locations/Kantatoli'
+import Login from './pages/Login'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import PaymentSuccess from './pages/PaymentSuccess'
+import PaymentFailed from './pages/PaymentFailed'
+import OrderTracking from './pages/OrderTracking'
+import Wallet from './pages/Wallet'
+import Subscriptions from './pages/Subscriptions'
+import SubscriptionDetail from './pages/SubscriptionDetail'
+import MyOrders from './pages/MyOrders'
+import Account from './pages/Account'
 
 function App() {
   return (
@@ -40,6 +51,18 @@ function App() {
           <Route path="/locations/doranda" element={<Doranda />} />
           <Route path="/locations/lalpur" element={<Lalpur />} />
           <Route path="/locations/kantatoli" element={<Kantatoli />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/failed" element={<PaymentFailed />} />
+          <Route path="/track" element={<OrderTracking />} />
+          <Route path="/track/:ticketNumber" element={<OrderTracking />} />
+          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/subscriptions" element={<Subscriptions />} />
+          <Route path="/subscriptions/manage" element={<SubscriptionDetail />} />
+          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </Layout>
     </BrowserRouter>

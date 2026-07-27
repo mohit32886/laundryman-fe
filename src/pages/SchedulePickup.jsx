@@ -281,15 +281,16 @@ const SchedulePickup = () => {
       />
 
       {/* Hero */}
-      <section className={`${bgColor('primary')} text-white py-16`}>
-        <div className="container mx-auto px-4 text-center">
-          <h1 className={headingClasses('h1')}>Schedule a Pickup</h1>
-          <p className={`${bodyTextClasses('lg')} mt-4 opacity-90`}>
-            Select your items, pick a time slot — we'll handle the rest
+      <section className="relative overflow-hidden theme-hero-bg text-white py-20 md:py-28">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+        <div className="relative container mx-auto px-4 text-center">
+          <span className="inline-flex items-center gap-2 glass-panel-dark border border-cyan-500/30 text-cyan-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            🎉 20% Off on 1st Order — Code: FIRST20
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Schedule a <span className="theme-title-gradient">PICKUP</span></h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light">
+            Select your items, pick a time slot — we'll handle doorstep collection & delivery
           </p>
-          <div className="inline-block bg-white/20 backdrop-blur-md rounded-lg px-6 py-3 mt-6">
-            <span className={`${bodyTextClasses()} font-bold`}>🎉 20% Off on 1st Order — Code: FIRST20</span>
-          </div>
         </div>
       </section>
 

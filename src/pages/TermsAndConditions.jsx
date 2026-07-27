@@ -2,12 +2,16 @@ import { contactInfo } from '../config/contact'
 
 export default function TermsAndConditions() {
   return (
-    <div className="bg-white">
+    <div className="bg-slate-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#1879a2] to-[#145e7d] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Terms and Conditions</h1>
-          <p className="text-xl">Laundryman.pro</p>
+      <section className="relative overflow-hidden theme-hero-bg text-white py-20 md:py-24">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-flex items-center gap-2 glass-panel-dark border border-cyan-500/30 text-cyan-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            📜 Service Terms & Guidelines
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Terms & <span className="theme-title-gradient">CONDITIONS</span></h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light">Laundryman.pro</p>
         </div>
       </section>
 

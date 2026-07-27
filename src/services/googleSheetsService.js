@@ -10,6 +10,8 @@
  * 5. Set VITE_GOOGLE_SCRIPT_URL in your .env file
  */
 
+import { submitLead } from './leadService'
+
 const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || ''
 
 /**
@@ -30,6 +32,14 @@ export const FORM_TYPES = {
  * @returns {Promise<Object>} Response from Google Apps Script
  */
 export async function submitToGoogleSheets(formType, data) {
+  // Primary path: backend Lead endpoint.
+  try {
+    const res = await submitLead(formType, data)
+    return { success: true, message: 'Submitted', id: res?.data?.id }
+  } catch (backendErr) {
+    console.warn('Backend lead submission failed, falling back to Google Sheets:', backendErr.message)
+  }
+
   if (!GOOGLE_SCRIPT_URL) {
     console.warn('Google Script URL not configured. Set VITE_GOOGLE_SCRIPT_URL in .env')
     // For development, simulate success
