@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Logo-based color palette - Update colors in src/config/colors.js to change these */
+  /* Logo-based color palette - Configured in src/config/colors.js */
   --color-brand-50: #e6f4f8;
   --color-brand-100: #cce9f1;
   --color-brand-200: #99d3e3;
@@ -13,49 +13,34 @@
   --color-brand-800: #0f4358;
   --color-brand-900: #0a2833;
   
-  /* Primary colors - Configured in src/config/colors.js */
+  /* Primary colors */
   --color-primary: #1879a2;
   --color-primary-light: #24bcee;
   --color-primary-medium: #35a0d9;
   --color-primary-dark: #145e7d;
   
-  /* Background colors */
-  --color-bg-light: #e6f4f8;
-  --color-bg-lighter: #cce9f1;
-  
-  /* Secondary colors (keep green for WhatsApp) */
+  /* Secondary colors */
   --color-secondary: #10b981;
-  --color-secondary-light: #34d399;
-  --color-secondary-dark: #059669;
-  
-  /* WhatsApp colors */
   --color-whatsapp: #25D366;
-  --color-whatsapp-hover: #20BA5A;
   
-  /* Create Tailwind utilities from CSS variables */
-  --color-primary: var(--color-primary);
-  --color-primary-light: var(--color-primary-light);
-  --color-primary-medium: var(--color-primary-medium);
-  --color-primary-dark: var(--color-primary-dark);
-  --color-bg-light: var(--color-bg-light);
-  --color-bg-lighter: var(--color-bg-lighter);
-  --color-secondary: var(--color-secondary);
-  --color-whatsapp: var(--color-whatsapp);
-  --color-whatsapp-hover: var(--color-whatsapp-hover);
-  
-  /* Font families - Configured in src/config/fonts.js */
+  /* Font families */
   --font-primary: "Roboto", sans-serif;
-  --font-secondary: "Roboto", sans-serif;
   --font-mono: "Roboto Mono", monospace;
-  
-  /* Font weights - Configured in src/config/fonts.js */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --font-weight-black: 900;
+}
+
+/* 🎨 HARMONIOUS SINGLE-SOURCE DESIGN COLOR PALETTE 🎨 */
+:root {
+  /* Premium Slate & Cyan Accents */
+  --theme-slate-dark: #090d16;
+  --theme-slate-medium: #0f172a;
+  --theme-cyan-accent: #38bdf8;
+  --theme-emerald-accent: #10b981;
+
+  /* Seamless Background Mesh & Title Gradients */
+  --theme-hero-bg: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #0c2b3d 100%);
+  --theme-title-gradient: linear-gradient(90deg, #ffffff 0%, #38bdf8 50%, #818cf8 100%);
+  --theme-cta-gradient: linear-gradient(90deg, #0284c7 0%, #2563eb 100%);
+  --theme-cta-hover-gradient: linear-gradient(90deg, #0369a1 0%, #1d4ed8 100%);
 }
 
 @layer base {
@@ -65,15 +50,78 @@
   
   body {
     font-family: var(--font-primary);
-    @apply antialiased text-gray-900;
+    @apply antialiased text-slate-900 bg-slate-50;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     @apply font-bold;
   }
-  
-  code, pre {
-    font-family: var(--font-mono);
+
+  /* 🚫 PERMANENTLY ELIMINATE UNWANTED TEXT CARET / CURSOR BARS ON NAV LINKS & BUTTONS 🚫 */
+  a, button, nav a, nav button, [role="button"] {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    caret-color: transparent !important;
+    outline: none !important;
   }
+  a:focus, button:focus, nav a:focus, nav button:focus {
+    outline: none !important;
+    caret-color: transparent !important;
+  }
+}
+
+/* Centralized CSS Utility Classes */
+.theme-hero-bg {
+  background: var(--theme-hero-bg);
+}
+
+.theme-title-gradient {
+  background: var(--theme-title-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-cta-btn {
+  background: var(--theme-cta-gradient);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+.theme-cta-btn:hover {
+  background: var(--theme-cta-hover-gradient);
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.35);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.glow-border {
+  transition: all 0.3s ease;
+}
+.glow-border:hover {
+  border-color: var(--theme-cyan-accent);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 3s ease-in-out infinite;
 }

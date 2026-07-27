@@ -17,7 +17,7 @@ const SchemaMarkup = ({ type = 'website', pageData = {} }) => {
   
   const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'DryCleaningOrLaundry'],
     name: 'Laundryman',
     url: baseUrl,
     telephone: '+91-9006463666',

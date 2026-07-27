@@ -107,12 +107,12 @@ const MobileActionButtons = ({
   ]
 
   return (
-    <div className={`fixed bottom-4 left-4 right-4 z-40 md:hidden ${className}`}>
+    <div className={`fixed bottom-3 left-3 right-3 z-50 md:hidden ${className}`}>
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
-        className="grid grid-cols-4 gap-2 safe-area-inset"
+        className="glass-panel-dark p-2 rounded-2xl border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] grid grid-cols-4 gap-2 safe-area-inset"
       >
         {buttons.map((button, index) => (
           <motion.button
@@ -130,9 +130,9 @@ const MobileActionButtons = ({
               ${button.bgColor} 
               ${button.hoverColor}
               text-white 
-              min-h-[56px]
-              rounded-lg 
-              shadow-lg 
+              min-h-[52px]
+              rounded-xl 
+              shadow-md 
               flex 
               flex-col 
               items-center 
@@ -146,7 +146,7 @@ const MobileActionButtons = ({
             aria-label={button.label}
           >
             {button.icon}
-            <span className="text-xs font-medium">{button.label}</span>
+            <span className="text-[11px] font-semibold tracking-wide">{button.label}</span>
           </motion.button>
         ))}
       </motion.div>

@@ -256,7 +256,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                 value={formData.location}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Enter your location/city"
               />
             </div>
@@ -273,7 +273,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                 value={formData.requirements}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Describe your service requirements..."
               ></textarea>
             </div>
@@ -290,7 +290,7 @@ export default function B2BQuoteModal({ isOpen, onClose }) {
                 value={formData.message}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1879a2] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Any additional information..."
               ></textarea>
             </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { headingClasses, bodyTextClasses } from '../utils/fonts';
 import { textColor, bgColor } from '../utils/classNames';
@@ -136,6 +137,7 @@ const BeforeAfterSlider = ({ before, after, description, category }) => {
 };
 
 const BeforeAfterGallery = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -177,12 +179,7 @@ const BeforeAfterGallery = () => {
           <Button 
             variant="primary" 
             size="large"
-            onClick={() => {
-              // Scroll to top and trigger pickup modal
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-              // Dispatch custom event that Home.jsx can listen to
-              window.dispatchEvent(new CustomEvent('openPickupModal'));
-            }}
+            onClick={() => navigate('/schedule-pickup')}
           >
             Book Laundryman →
           </Button>

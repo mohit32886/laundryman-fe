@@ -1,15 +1,28 @@
 /**
- * Utility functions for generating Tailwind class names using centralized colors
- * Import colors from config/colors.js and use these utilities for consistent styling
+ * Single Source-of-Truth Theme Class Utility
+ * Connects UI helper functions directly to themeConfig (src/config/theme.js).
+ * Changing tokens in theme.js dynamically updates all generated classes.
  */
 
 import { colors } from '../config/colors'
+import { themeConfig } from '../config/theme'
 
-/**
- * Get background color class
- * @param {string} colorKey - Key from colors config (e.g., 'primary', 'primaryLight')
- * @returns {string} Tailwind className with arbitrary value
- */
+export const heroGradient = () => {
+  return themeConfig.gradients.heroBackground;
+}
+
+export const titleGradient = () => {
+  return themeConfig.gradients.titleText;
+}
+
+export const ctaButtonClass = () => {
+  return themeConfig.gradients.ctaButton;
+}
+
+export const glassCardClass = (variant = 'light') => {
+  return variant === 'dark' ? themeConfig.glassmorphism.cardDark : themeConfig.glassmorphism.cardLight;
+}
+
 export const bgColor = (colorKey) => {
   const colorMap = {
     primary: colors.primary.DEFAULT,
@@ -27,11 +40,6 @@ export const bgColor = (colorKey) => {
   return `bg-[${color}]`
 }
 
-/**
- * Get text color class
- * @param {string} colorKey - Key from colors config
- * @returns {string} Tailwind className with arbitrary value
- */
 export const textColor = (colorKey) => {
   const colorMap = {
     primary: colors.primary.DEFAULT,
@@ -49,11 +57,6 @@ export const textColor = (colorKey) => {
   return `text-[${color}]`
 }
 
-/**
- * Get border color class
- * @param {string} colorKey - Key from colors config
- * @returns {string} Tailwind className with arbitrary value
- */
 export const borderColor = (colorKey) => {
   const colorMap = {
     primary: colors.primary.DEFAULT,
@@ -71,14 +74,9 @@ export const borderColor = (colorKey) => {
   return `border-[${color}]`
 }
 
-/**
- * Get hover background color class
- * @param {string} colorKey - Key from colors config
- * @returns {string} Tailwind className with arbitrary value
- */
 export const hoverBgColor = (colorKey) => {
   const colorMap = {
-    primary: colors.primary.dark, // Default hover is darker
+    primary: colors.primary.dark,
     primaryLight: colors.primary.DEFAULT,
     primaryMedium: colors.primary.DEFAULT,
     primaryDark: colors.primary.darker,
@@ -91,11 +89,6 @@ export const hoverBgColor = (colorKey) => {
   return `hover:bg-[${color}]`
 }
 
-/**
- * Get hover text color class
- * @param {string} colorKey - Key from colors config
- * @returns {string} Tailwind className with arbitrary value
- */
 export const hoverTextColor = (colorKey) => {
   const colorMap = {
     primary: colors.primary.dark,
@@ -107,19 +100,6 @@ export const hoverTextColor = (colorKey) => {
   return `hover:text-[${color}]`
 }
 
-/**
- * Get gradient classes for hero sections
- * @returns {string} Tailwind gradient classes
- */
-export const heroGradient = () => {
-  return `bg-gradient-to-r from-[${colors.primary.DEFAULT}] to-[${colors.primary.dark}]`
-}
-
-/**
- * Get focus ring color class
- * @param {string} colorKey - Key from colors config (defaults to 'primary')
- * @returns {string} Tailwind focus ring className
- */
 export const focusRingColor = (colorKey = 'primary') => {
   const colorMap = {
     primary: colors.primary.DEFAULT,
@@ -131,11 +111,6 @@ export const focusRingColor = (colorKey = 'primary') => {
   return `focus:ring-2 focus:ring-[${color}]`
 }
 
-/**
- * Get accent color class (for form inputs like range sliders, checkboxes)
- * @param {string} colorKey - Key from colors config (defaults to 'primary')
- * @returns {string} Tailwind accent color className
- */
 export const accentColor = (colorKey = 'primary') => {
   const colorMap = {
     primary: colors.primary.DEFAULT,
@@ -146,4 +121,3 @@ export const accentColor = (colorKey = 'primary') => {
   const color = colorMap[colorKey] || colorKey
   return `accent-[${color}]`
 }
-
